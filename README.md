@@ -17,7 +17,8 @@ Alternatively, you may use [Yarn](https://http://yarnpkg.com/):
 yarn install
 yarn start
 ```
-
+</br>
+</br>
 <h3 style="font-family='Helvetica'; font-size=15px; font-weight=bold; color=grey;">👊 How to use it</h3>
 <h4>For JS/REACT</h4>
 <p>Just change variables from <b>index.js</b></p>
@@ -39,8 +40,8 @@ yarn start
 <li>👉 Product Page</li>
 <li>👉 Search Result Page</li>
 <li>👉 Personalisation</li>
-<li>👉 Dynamic Filter Re ranking</li>
-<li>👉 Banner Injections</li>
+<li>👉 Dynamic Filter Re ranking (through Dashboard)</li>
+<li>👉 Banner Injections (through Dashboard)</li>
 <li>👉 Query Suggestions</li>
 <li>👉 Federated Search</li>
 <li>👉 Category Pages</li>
