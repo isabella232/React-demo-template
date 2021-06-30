@@ -8,7 +8,7 @@ import {
 } from 'react-instantsearch-dom';
 
 
-
+// MAIN SEARCH RESULT PAGE + FEDERATED
 const Hits = ({ hits, setProduct, setModal, setShowFederatedSearch, setSearchVisible }) => {
 
     return (
@@ -59,6 +59,8 @@ const Hits = ({ hits, setProduct, setModal, setShowFederatedSearch, setSearchVis
         </div>
     );
 }
+
+// PDP
 const HitsModal = ({ hits }) => {
 
     return (
