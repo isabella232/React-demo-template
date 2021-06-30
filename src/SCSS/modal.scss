@@ -1,0 +1,146 @@
+@import "./mixin.scss";
+@import "./variables.scss";
+
+.modal-wrapper {
+    background: rgba(255, 255, 255, 0.95);
+    // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    height: 100%;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transform: translate(0%, 0%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-y: scroll;
+
+   .modal-inner-wrapper{
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.modal-detail {
+    background-color: transparent;
+    // display: grid;
+    // grid-template-columns: 75% 25%;
+    display: flex;
+    padding: 2rem;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.fake-filters{
+    width: 60%;
+    img{
+        width: 100%;
+        object-fit: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    cursor: pointer;
+}
+
+.product-side {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.modal-images {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    img {
+        width: 90%;
+    }
+}
+
+.modal-infos {
+    margin-top: 3rem;
+    width: 80%;
+
+    h3,
+    p {
+        margin: 1rem 0;
+    }
+
+    .btn-modal {
+        @include btn-filter;
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3rem;
+
+        &:hover {
+            @include btn-filter-hover;
+        }
+    }
+}
+
+.recommand-side{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.modal-hits{
+    margin: 2rem;
+}
+
+.hits-list-modal{
+    flex-wrap: nowrap ;
+    display: -webkit-box;
+    overflow-x: scroll;
+    padding: 1rem 0rem;
+    list-style-type: none;
+
+   li{
+        width: 250px !important;
+        // height: 200px;
+    }
+}
+
+.fadeModal {
+    animation: fadeModal 0.5s forwards ease-in-out;
+}
+
+.fadeOutModal {
+    animation: fadeOutModal 0.5s forwards ease-in-out;
+}
+
+@keyframes fadeModal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 2rem, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0rem, 0, 0);
+    }
+}
+@keyframes fadeOutModal {
+    0% {
+        opacity: 1;
+        transform: translate3d(0rem, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(0, 2rem, 0);
+    }
+}
