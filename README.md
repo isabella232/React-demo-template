@@ -1,4 +1,4 @@
-# luxottica-demo
+# REACT TEMPLATE FOR DEMO ENG
 
 _This project was generated with [create-instantsearch-app](https://github.com/algolia/create-instantsearch-app) by [Algolia](https://algolia.com)._
 
@@ -18,7 +18,35 @@ yarn install
 yarn start
 ```
 
+<h3 style="font-family='Helvetica'; font-size=15px; font-weight=bold; color=grey;">👊 How to use it</h3>
+<h4>For JS/REACT</h4>
+<p>Just change variables from <b>index.js</b></p>
+<p>You will probably have to adapt your attribute for Hits & Filters but that's (h)it (sorry I'm 58 y.o)</p>
+</br>
+<h4>For CSS</h4>
+<p>You can modify all your variables from <b>SCSS/variables.scss</b></p>
+<p>Want to change styling ?</p>
+<p>Main style & design are accessible through <b>mixin</b> in <b>SCSS/mixin.scss</b></p>
+</br>
+</br>
+<h3 style="font-family='Helvetica'; font-size=15px; font-weight=bold; color=grey;">👊 What's in the template</h3>
+<ul>
+<li>👉 Classic Search</li>
+<li>👉 Filters (Refinement, Sort By...etc)</li>
+<li>👉 Current Refinement</li>
+<li>👉 Stats</li>
+<li>👉 Carousel</li>
+<li>👉 Product Page</li>
+<li>👉 Search Result Page</li>
+<li>👉 Personalisation</li>
+<li>👉 Dynamic Filter Re ranking</li>
+<li>👉 Banner Injections</li>
+<li>👉 Query Suggestions</li>
+<li>👉 Federated Search</li>
+<li>👉 Category Pages</li>
+<li>👉 VoiceSearch</li>
+</ul>
+
 Open http://localhost:3000 to see your app.
-# luxottica-demo
-# react-demo-template
-# React-demo-template
+# REACT TEMPLATE FOR DEMO ENG
+
