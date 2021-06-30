@@ -29,6 +29,11 @@ yarn start
 <p>Want to change styling ?</p>
 <p>Main style & design are accessible through <b>mixin</b> in <b>SCSS/mixin.scss</b></p>
 </br>
+<h4>For ASSETS</h4>
+<p>Everything is under Assets folder <b>index.js</b></p>
+<p>You can just add you images into this folder under naming img1, img2 ...etc</p>
+<p>It will create a fake homepage for you</p>
+</br>
 </br>
 <h3 style="font-family='Helvetica'; font-size=15px; font-weight=bold; color=grey;">👊 What's in the template</h3>
 <ul>
