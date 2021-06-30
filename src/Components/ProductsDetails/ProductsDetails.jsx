@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { Recommendations } from "@algolia/react-recommendations";
+import React from 'react';
+
 import algoliasearch from 'algoliasearch/lite';
+import { Configure, InstantSearch } from 'react-instantsearch-dom';
 
-import {CustomHitsModal} from '../Searchage/Hits'
-import {
-    Configure, 
-    InstantSearch
-} from 'react-instantsearch-dom';
+// IMPORT COMPONENTS
+import { CustomHitsModal } from '../Searchpage/Hits'
 
+// IMPORT ASSETS
 import pdp from '../../Assets/Images/pdp.png'
 
 
@@ -42,22 +41,22 @@ const ProductDetails = ({ product, setModal }) => {
                         <img src={pdp} alt="" />
                     </div>
                 </div>
-                    <div className="recommand-side">
-                        <div><h3>Recommandations</h3></div>
-                        <div className="modal-hits">
-                        <Configure hitsPerPage={8}/>
-                       <CustomHitsModal/>
-                       </div>
-                        <div><h3>Bought together</h3></div>
-                        <div className="modal-hits">
-                        <InstantSearch
-                        indexName={window.index_asc}
-                        searchClient={searchClient}>
-                        <Configure hitsPerPage={8}/>
-                       <CustomHitsModal/>
-                       </InstantSearch>
-                       </div>
+                <div className="recommand-side">
+                    <div><h3>Recommandations</h3></div>
+                    <div className="modal-hits">
+                        <Configure hitsPerPage={8} />
+                        <CustomHitsModal />
                     </div>
+                    <div><h3>Bought together</h3></div>
+                    <div className="modal-hits">
+                        <InstantSearch
+                            indexName={window.index_asc}
+                            searchClient={searchClient}>
+                            <Configure hitsPerPage={8} />
+                            <CustomHitsModal />
+                        </InstantSearch>
+                    </div>
+                </div>
             </div>
         );
     }

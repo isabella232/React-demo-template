@@ -1,7 +1,7 @@
 @import "./mixin.scss";
 @import "./variables.scss";
 
-// Filters on Left
+// LEFT FILTERS
 
 .filters-content {
     width: 100%;
@@ -11,7 +11,7 @@
         justify-content: space-between;
         align-items: center;
         h3 {
-            @include title-filter;
+            @include title;
         }
     }
     .filter-list-content {
@@ -22,15 +22,15 @@
                 font-size: 16px;
             }
             .button-filter {
-                @include btn-filter;
+                @include btn;
             }
             .button-filter:hover {
-                @include btn-filter-hover;
+                @include btn-hover;
             }
         }
     }
     .line {
-        border-bottom: 1px solid $grey-border-buttons;
+        border-bottom: 1px solid $seventh-color;
         width: 70%;
         margin: 1em auto 1em auto;
     }
@@ -122,11 +122,11 @@
 // Rheostat
 .DefaultBackground {
     border: none !important;
-    background-color: white !important;
+    background-color: $fourth-color !important;
 }
 
 .DefaultProgressBar_progressBar {
-    background-color: $grey-border-buttons !important;
+    background-color: $seventh-color !important;
 }
 
 // Current Refinement
@@ -144,26 +144,22 @@
         display: flex;
         align-items: center;
         margin-bottom: 1em;
+        justify-content: center;
         a {
-            background-color: #f2f2f2;
-            color: $title-filters-color;
-            text-decoration: none;
-            margin: 0 0.5em;
-            border-radius: 0.2em;
-            padding: 0.5em 1em;
+            @include btn;
         }
         h3 {
-            @include title-filter;
+            @include title;
         }
         .refinement-results {
             display: flex;
+            margin-left: 0.5rem;
+
+            li {
+                margin-left: 0.5rem;
+            }
             .refinement-filter {
-                background-color: #f2f2f2;
-                color: $title-filters-color;
-                text-decoration: none;
-                margin: 0 0.5em;
-                border-radius: 0.2em;
-                padding: 0.5em 1em;
+                @include btn;
             }
         }
     }

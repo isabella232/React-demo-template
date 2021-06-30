@@ -1,54 +1,49 @@
-@import './variables.scss';
-@import './mixin.scss';
+@import "./variables.scss";
+@import "./mixin.scss";
 
-.federatedSearch-wrapper{
+.federatedSearch-wrapper {
     display: grid;
     grid-template-columns: 25% 75%;
-   
-
 }
 
-
-.federatedSearch{
+.federatedSearch {
     width: 90vw;
     height: 80vh;
-    background: rgba( 255, 255, 255, 0.98 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 18.0px );
-    -webkit-backdrop-filter: blur( 14.0px );
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(14px);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 2rem;
-    margin: 0 auto;
+    margin: 0rem auto;
     overflow-x: hidden;
 
-    .searchBox-wrapper{
-        form{
+    .searchBox-wrapper {
+        form {
             width: 90%;
         }
     }
 }
 
-.federatedSearch-products{
-    .federated-title{
+.federatedSearch-products {
+    .federated-title {
         margin-left: 3rem;
         margin-bottom: 1rem;
     }
 }
 
-
-.federatedSearch-suggestions{
-
-    .suggestions-container{
+.federatedSearch-suggestions {
+    .suggestions-container {
         display: flex;
         flex-direction: column;
 
-        .suggestion{
+        .suggestion {
             border: none;
             padding: 0;
             margin: 1rem 0;
 
-            p{
+            p {
                 text-transform: lowercase;
                 font-size: 1.2rem;
             }
@@ -56,11 +51,11 @@
     }
 }
 
-.container-federated{
+.container-federated {
     position: absolute;
     z-index: 999;
     top: 0;
     left: 0;
-   width: 100%;
-    transform: translate(0%, 0%);
+    width: 100%;
+    transform: translate(0%, 15%);
 }

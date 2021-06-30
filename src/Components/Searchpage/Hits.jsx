@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import {
     Highlight,
@@ -9,7 +9,7 @@ import {
 
 
 
-const Hits = ({ hits, setProduct, setModal }) => {
+const Hits = ({ hits, setProduct, setModal, setShowFederatedSearch, setSearchVisible }) => {
 
     return (
         <div className="hits-wrapper">
@@ -35,10 +35,12 @@ const Hits = ({ hits, setProduct, setModal }) => {
             </div>
             <ul className="hits-list">
                 {hits.map((hit) => (
-                    <li className="hit-list" onClick={
+                    <li key={hit.objectID} className="hit-list" onClick={
                         () => {
                             setProduct(hit)
                             setModal(true)
+                            setShowFederatedSearch(false)
+                            setSearchVisible(true)
                         }
                     }>
                         <div className="image-wrapper">
@@ -63,7 +65,7 @@ const HitsModal = ({ hits }) => {
         <div className="hits-wrapper">
             <ul className="hits-list hits-list-modal">
                 {hits.map((hit) => (
-                    <li className="hit-list">
+                    <li key={hit.objectID} className="hit-list">
                         <div className="image-wrapper">
                             <img src={hit.image_link} alt="" />
                         </div>
@@ -86,4 +88,4 @@ const HitsModal = ({ hits }) => {
 const CustomHits = connectHits(Hits);
 const CustomHitsModal = connectHits(HitsModal);
 
-export {CustomHits, CustomHitsModal }
+export { CustomHits, CustomHitsModal }

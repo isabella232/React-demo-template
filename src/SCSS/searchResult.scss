@@ -1,8 +1,7 @@
 @import "./variables.scss";
 @import "./mixin.scss";
 
-.searchResult-wrapper{
-    position: relative;
+.searchResult-wrapper {
     width: 100%;
 }
 
@@ -24,7 +23,7 @@
     align-items: center;
     justify-content: center;
 
-    form{
+    form {
         width: 100%;
     }
 
@@ -39,7 +38,7 @@
 
         &:focus {
             transition: 0.2s ease-in-out;
-            background-color: white;
+            background-color: $fourth-color;
             outline: none;
         }
     }
@@ -75,56 +74,24 @@
     width: 90%;
     margin: -1rem auto 2rem auto;
     .ais-Stats-text {
-        color: $title-filters-color;
+        color: $sixth-color;
     }
 }
 .ais-SortBy-select {
-    @include btn-filter;
+    @include btn;
     .ais-SortBy-option {
-        color: $title-filters-color;
-        @include title-filter;
+        color: $sixth-color;
+        @include title;
     }
 }
 
 //SEARCHRESULT
 
 .hits-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    @include hits-list;
 
     .hit-list {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        border: $third-color solid 1px;
-        margin: 0.2rem;
-        padding: 1rem;
-        cursor: pointer;
-
-        .infos {
-            h3 {
-                font-size: 1rem;
-            }
-            p {
-                font-size: 1rem;
-                font-weight: 200;
-            }
-        }
-
-        .image-wrapper {
-            width: 100%;
-
-            img {
-                width: 100%;
-                background-image: $third-color;
-                object-fit: cover;
-                object-position: center;
-                position: relative;
-            }
-        }
+        @include hit-list;
     }
 }
 
@@ -148,22 +115,25 @@
 
 //SUGGESTIONS
 
-
-.suggestions-container{
+.suggestions-container {
     display: flex;
     justify-content: center;
 
-    .suggestion{
+    .suggestion {
         margin: 0.5rem;
         border: solid 1px $third-color;
         color: black;
         border-radius: 3px;
         padding: 0.5rem;
         cursor: pointer;
-       p{
-        font-size: 0.8rem;
-        text-transform: capitalize;
-       }
+        p {
+            font-size: 0.8rem;
+            text-transform: capitalize;
+        }
+
+        &:hover {
+            @include btn-hover;
+        }
     }
 }
 

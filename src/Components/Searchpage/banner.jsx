@@ -1,7 +1,5 @@
 import React from "react";
-import { QueryRuleCustomData, connectQueryRules } from 'react-instantsearch-dom';
-
-
+import { connectQueryRules } from 'react-instantsearch-dom';
 
 const QueryRuleCustomDatas = ({ items }) => {
     return (
@@ -16,12 +14,11 @@ const QueryRuleCustomDatas = ({ items }) => {
                         <h2>{title}</h2>
                         <div className='underline'></div>
                     </div>
-                    <img src={banner} />
+                    <img src={banner} alt="addBanner" />
                 </div>
 
             )
         })
-
     )
 }
 

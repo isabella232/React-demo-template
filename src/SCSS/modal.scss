@@ -1,27 +1,37 @@
 @import "./mixin.scss";
 @import "./variables.scss";
 
+.modal-bg {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+}
+
 .modal-wrapper {
     background: rgba(255, 255, 255, 0.95);
-    // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    height: 100%;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 90vh;
+    width: 90vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 999;
-    transform: translate(0%, 0%);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
     overflow-y: scroll;
+    margin: 0 auto;
 
-   .modal-inner-wrapper{
+    .modal-inner-wrapper {
         height: 100%;
         width: 100%;
     }
@@ -37,9 +47,9 @@
     border-radius: 3px;
 }
 
-.fake-filters{
+.fake-filters {
     width: 60%;
-    img{
+    img {
         width: 100%;
         object-fit: cover;
         display: flex;
@@ -80,7 +90,7 @@
     }
 
     .btn-modal {
-        @include btn-filter;
+        @include btn;
         width: 30%;
         display: flex;
         justify-content: center;
@@ -88,29 +98,24 @@
         margin-top: 3rem;
 
         &:hover {
-            @include btn-filter-hover;
+            @include btn-hover;
         }
     }
 }
 
-.recommand-side{
+.recommand-side {
     display: flex;
     flex-direction: column;
-    
 }
 
-.modal-hits{
+.modal-hits {
     margin: 2rem;
 }
 
-.hits-list-modal{
-    flex-wrap: nowrap ;
-    display: -webkit-box;
-    overflow-x: scroll;
-    padding: 1rem 0rem;
-    list-style-type: none;
+.hits-list-modal {
+    @include carousel-wrapper;
 
-   li{
+    li {
         width: 250px !important;
         // height: 200px;
     }
@@ -127,17 +132,17 @@
 @keyframes fadeModal {
     0% {
         opacity: 0;
-        transform: translate3d(0, 2rem, 0);
+        transform: translate3d(-50%, 0, -0%);
     }
     100% {
         opacity: 1;
-        transform: translate3d(0rem, 0, 0);
+        transform: translate3d(-50%, -50%, -0%);
     }
 }
 @keyframes fadeOutModal {
     0% {
         opacity: 1;
-        transform: translate3d(0rem, 0, 0);
+        transform: translate3d(0rem, -50%, -50%);
     }
     100% {
         opacity: 0;

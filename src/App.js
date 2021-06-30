@@ -6,28 +6,26 @@ import './SCSS/index.scss';
 
 //COMPONENTS
 import Header from './Components/Header/Header';
-import SearchResults from './Components/Searchage/SearchResult';
+import SearchResults from './Components/Searchpage/SearchResult';
 import Homepage from './Components/Homepage/Homepage';
 
 const App = () => {
     const [searchVisible, setSearchVisible] = useState(false);
-    const [catSunglasses, setCatSunglasses] = useState(false);
-    const [catEyeGlasses, setCatEyeGlasses] = useState(false);
+    const [catOne, setCatOne] = useState(false);
+    const [catTwo, setCatTwo] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const [query, setQuery] = useState('');
     const [showFederatedSearch, setShowFederatedSearch] = useState(false);
-    // console.log(searchVisible)
     return (
         <div>
             <Header
                 setSelectedOption={setSelectedOption}
                 searchVisible={searchVisible}
                 setSearchVisible={setSearchVisible}
-                setSearchVisible={setSearchVisible}
-                catSunglasses={catSunglasses}
-                setCatSunglasses={setCatSunglasses}
-                catEyeGlasses={catEyeGlasses}
-                setCatEyeGlasses={setCatEyeGlasses}
+                catOne={catOne}
+                setCatOne={setCatOne}
+                catTwo={catTwo}
+                setCatTwo={setCatTwo}
                 setShowFederatedSearch={setShowFederatedSearch}
                 showFederatedSearch={showFederatedSearch}
             />
@@ -35,8 +33,8 @@ const App = () => {
                 selectedOption={selectedOption}
                 searchVisible={searchVisible}
                 setSearchVisible={setSearchVisible}
-                catSunglasses={catSunglasses}
-                catEyeGlasses={catEyeGlasses}
+                catOne={catOne}
+                catTwo={catTwo}
                 query={query}
                 setQuery={setQuery}
                 setShowFederatedSearch={setShowFederatedSearch}
@@ -44,8 +42,8 @@ const App = () => {
             />
             <Homepage
                 searchVisible={searchVisible}
-                catSunglasses={catSunglasses}
-                catEyeGlasses={catEyeGlasses}
+                catOne={catOne}
+                catTwo={catTwo}
             />
         </div>
     );

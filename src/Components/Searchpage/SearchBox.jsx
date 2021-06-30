@@ -1,44 +1,43 @@
 import React from 'react';
 
+
+// ALGOLIA'S IMPORT
 import {
     connectSearchBox,
     VoiceSearch,
     connectCurrentRefinements
 } from 'react-instantsearch-dom';
 
+// UNIQBY LIB
 import uniqBy from 'lodash.uniqby';
 
-const SearchBox = ({ 
-    currentRefinement, 
-    refine, 
-    setQuery, 
-    setShowFederatedSearch, 
-    setSearchVisible, 
-    searchVisible,
+const SearchBox = ({
+    refine,
+    setQuery,
+    setShowFederatedSearch,
+    setSearchVisible,
     query
- }) => {
-    //  console.log(searchVisible)
+}) => {
     return (
         <div>
             <div className="searchBox-wrapper">
-                <form action="" role="search"   
-                onSubmit={(e)=> {
+                <form action="" role="search"
+                    onSubmit={(e) => {
                         e.preventDefault()
                         setShowFederatedSearch(false)
                         setSearchVisible(true)
                         setQuery(e.currentTarget.value)
                     }}>
-                <input
-                    type="search"
-                    value={query}
-                    onChange={event => {
-                        setQuery(event.currentTarget.value)
-                        
-                        refine(event.currentTarget.value)  
-                    } }
-                    placeholder="Search..."
-                  
-                />
+                    <input
+                        type="search"
+                        value={query}
+                        onChange={event => {
+                            setQuery(event.currentTarget.value)
+                            refine(event.currentTarget.value)
+                        }}
+                        placeholder="Search..."
+
+                    />
                 </form>
                 <VoiceSearch searchAsYouSpeak={false} language={'en-US'} />
             </div>
@@ -64,7 +63,7 @@ const CurrentRefinements = ({ items, refine }) => {
                             <ul className="refinement-results">
                                 {item.items.map(nested => (
                                     <li key={nested.label}>
-                                        <a
+                                        <button
                                             className="refinement-filter"
                                             href="#"
                                             onClick={event => {
@@ -73,13 +72,13 @@ const CurrentRefinements = ({ items, refine }) => {
                                             }}
                                         >
                                             {nested.label}
-                                        </a>
+                                        </button>
                                     </li>
                                 ))}
                             </ul>
                         </React.Fragment>
                     ) : (
-                        <a
+                        <button
                             href="#"
                             onClick={event => {
                                 event.preventDefault();
@@ -87,7 +86,7 @@ const CurrentRefinements = ({ items, refine }) => {
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     )}
                 </li>
             ))}

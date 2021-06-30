@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
+// ALGOLIA'S IMPORT
 import {
     connectRefinementList,
     connectHierarchicalMenu,
     connectRange,
 } from 'react-instantsearch-dom';
 
+// COMPONENTS IMPORT
 import DynamicFilter from './DynamicFilter';
-
 import CustomStateResults from './StateResults'
 
 // Prerequisite: install rheostat@4
@@ -15,11 +16,10 @@ import 'rheostat/initialize';
 import Rheostat from 'rheostat';
 import 'rheostat/css/rheostat.css';
 
-
-
-
-
-const CatFilter = ({ items, currentRefinement, refine, createURL }) => {
+const CatFilter = ({
+    items,
+    refine,
+    createURL }) => {
     const [category, setcategory] = useState(true);
     return (
         <div className="filters-content">
@@ -68,7 +68,6 @@ const HierarchicalMenu = connectHierarchicalMenu(CatFilter);
 
 // CATEGORIES REFINMENT LIST
 const CatRefinementList = ({ items, refine }) => {
-    console.log(items)
     return (
         <div className="filters-content">
             <div
@@ -81,7 +80,7 @@ const CatRefinementList = ({ items, refine }) => {
                 className="filter-list-content">
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
-                        <a
+                        <button
                             className="button-filter"
                             href="#"
                             onClick={event => {
@@ -90,7 +89,7 @@ const CatRefinementList = ({ items, refine }) => {
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -121,7 +120,7 @@ const ColorRefinementList = ({ items, refine }) => {
             >
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
-                        <a
+                        <button
                             className="button-filter"
                             href="#"
                             onClick={event => {
@@ -130,7 +129,7 @@ const ColorRefinementList = ({ items, refine }) => {
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -161,7 +160,7 @@ const SizeRefinementList = ({ items, refine }) => {
             >
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
-                        <a
+                        <button
                             className="button-filter"
                             href="#"
                             style={{ fontWeight: item.isRefined ? 'bold' : '' }}
@@ -171,7 +170,7 @@ const SizeRefinementList = ({ items, refine }) => {
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -191,7 +190,7 @@ const CategoriesRefinementList = ({ items, refine }) => {
             <ul className='filter-list-content'>
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
-                        <a
+                        <button
                             className="button-filter"
                             href="#"
                             style={{ fontWeight: item.isRefined ? 'bold' : '' }}
@@ -201,7 +200,7 @@ const CategoriesRefinementList = ({ items, refine }) => {
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -215,7 +214,6 @@ const CustomCateRefinementList = connectRefinementList(CategoriesRefinementList)
 
 // Frame Shape Description
 const FrameShapeRefinementList = ({ items, refine }) => {
-    console.log(items)
     const [frameShapes, setFrameShapes] = useState(true);
     return (
         <div className="filters-content">
@@ -234,7 +232,7 @@ const FrameShapeRefinementList = ({ items, refine }) => {
             >
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
-                        <a
+                        <button
                             className="button-filter"
                             href="#"
                             onClick={event => {
@@ -243,7 +241,7 @@ const FrameShapeRefinementList = ({ items, refine }) => {
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -255,7 +253,7 @@ const FrameShapeRefinementList = ({ items, refine }) => {
 const CustomFrameShapeRefinementList = connectRefinementList(FrameShapeRefinementList);
 
 // GENDER
-const GenderRefinementList = ({ items, currentRefinement, refine, createURL  }) => {
+const GenderRefinementList = ({ items, refine }) => {
     const [genders, setGenders] = useState(true);
     return (
         <div className="filters-content">
@@ -274,7 +272,7 @@ const GenderRefinementList = ({ items, currentRefinement, refine, createURL  }) 
             >
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
-                        <a
+                        <button
                             className="button-filter"
                             href="#"
                             onClick={event => {
@@ -283,7 +281,7 @@ const GenderRefinementList = ({ items, currentRefinement, refine, createURL  }) 
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -296,8 +294,6 @@ const CustomGenderRefinementList = connectRefinementList(GenderRefinementList);
 
 // FRAMEMATERIAL
 const MaterialRefinementList = ({ items, refine }) => {
-    console.log(items)
-
     const [materials, setMaterials] = useState(true);
     return (
         <div className="filters-content">
@@ -316,7 +312,7 @@ const MaterialRefinementList = ({ items, refine }) => {
             >
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
-                        <a
+                        <button
                             className="button-filter"
                             href="#"
                             onClick={event => {
@@ -325,7 +321,7 @@ const MaterialRefinementList = ({ items, refine }) => {
                             }}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -336,10 +332,7 @@ const MaterialRefinementList = ({ items, refine }) => {
 
 const CustomMaterialRefinementList = connectRefinementList(MaterialRefinementList);
 
-
-
 // Price Filter
-
 const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
     const [stateMin, setStateMin] = React.useState(min);
     const [stateMax, setStateMax] = React.useState(max);
@@ -398,29 +391,29 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
 
 const CustomRangeSlider = connectRange(RangeSlider);
 
-
+// MAIN COMPONENT
 const CustomFilters = ({ filterAnim, isDynamicFactesOn, setIsDynamicFactesOn }) => {
     return (
-        <div className={`filters-wrapper ${filterAnim ? "showWrapperFilter" : "hideWrapperFilter"}`}>              
-                        <div>
-                            <CustomStateResults />
-                            {isDynamicFactesOn ? ('') : ( 
-                                <div>
-                            <CustomFrameShapeRefinementList attribute="FrameShapeDescription"/>
-                            <CustomMaterialRefinementList attribute="FRAMEMATERIAL" />
-                            <CustomGenderRefinementList attribute="GENDER"/>
-                            <CustomColorRefinementList attribute="color" />
-                            <CustomSizeRefinementList attribute="size" />
-                            </div>)}
-                           
-                            <DynamicFilter setIsDynamicFactesOn={setIsDynamicFactesOn} isDynamicFactesOn={isDynamicFactesOn}/>
-                            <CustomFrameShapeRefinementList attribute="FrameShapeDescription"/>
-                            <CustomMaterialRefinementList attribute="FRAMEMATERIAL" />
-                            <CustomRangeSlider attribute="price" min={10} max={550} />
-                        </div>
+        <div className={`filters-wrapper ${filterAnim ? "showWrapperFilter" : "hideWrapperFilter"}`}>
+            <div>
+                <CustomStateResults />
+                {isDynamicFactesOn ? ('') : (
+                    <div>
+                        <CustomFrameShapeRefinementList attribute="FrameShapeDescription" />
+                        <CustomMaterialRefinementList attribute="FRAMEMATERIAL" />
+                        <CustomGenderRefinementList attribute="GENDER" />
+                        <CustomColorRefinementList attribute="color" />
+                        <CustomSizeRefinementList attribute="size" />
+                    </div>)}
+
+                <DynamicFilter setIsDynamicFactesOn={setIsDynamicFactesOn} isDynamicFactesOn={isDynamicFactesOn} />
+                <CustomFrameShapeRefinementList attribute="FrameShapeDescription" />
+                <CustomMaterialRefinementList attribute="FRAMEMATERIAL" />
+                <CustomRangeSlider attribute="price" min={10} max={550} />
+            </div>
         </div>
 
     );
 };
 
-export {CustomFilters, HierarchicalMenu, CatRefinementLists, CustomCateRefinementList };
+export { CustomFilters, HierarchicalMenu, CatRefinementLists, CustomCateRefinementList };

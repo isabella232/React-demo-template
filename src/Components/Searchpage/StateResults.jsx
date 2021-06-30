@@ -1,9 +1,6 @@
 import { connectStateResults } from 'react-instantsearch-dom';
 
-const StateResults = ({searchResults}) => {
-
-  console.log(searchResults)
-  
+const StateResults = ({ searchResults }) => {
   return null
 };
 

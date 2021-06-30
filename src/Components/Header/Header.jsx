@@ -1,49 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+// COMPONENT IMPORT
 import logo from '../../Assets/Images/logo.jpeg';
 import headerUp from '../../Assets/Images/headerUp.png';
-
 import SelectPersona from './Persona'
 
 //FONT AWESOME
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPalette } from '@fortawesome/free-solid-svg-icons'
 
 
-
 const Header = ({
-    setSelectedOption, setSearchVisible, searchVisible, setCatSunglasses, catSunglasses, catEyeGlasses, setCatEyeGlasses, showFederatedSearch, setShowFederatedSearch
+    setSelectedOption,
+    setSearchVisible,
+    setCatOne,
+    setCatTwo,
+    showFederatedSearch,
+    setShowFederatedSearch
 }) => {
     return (
         <header className="header">
-            <img src={headerUp} alt="" className="headerUp"  />
+            <img src={headerUp} alt="" className="headerUp" />
             <div className="header-wrapper">
                 <img src={logo} alt="logo" className="logo" onClick={() => {
-                            setCatSunglasses(false);
-                            setSearchVisible(false);
-                            setCatEyeGlasses(false);
-                        }}  /> 
+                    setCatOne(false);
+                    setSearchVisible(false);
+                    setCatTwo(false);
+                }} />
                 <ul>
                     <li
                         onClick={() => {
-                            setCatSunglasses(true);
+                            setCatOne(true);
                             setSearchVisible(false);
-                            setCatEyeGlasses(false);
+                            setCatTwo(false);
                             setShowFederatedSearch(false)
                         }}
                     >
-                        SUNGLASSES
+                        CAT ONE
                     </li>
                     <li
                         onClick={() => {
-                            setCatEyeGlasses(true);
-                            setCatSunglasses(false);
+                            setCatTwo(true);
+                            setCatOne(false);
                             setSearchVisible(false);
                             setShowFederatedSearch(false)
                         }}
                     >
-                        EYEGLASSES
+                        CAT TWO
                     </li>
                     <li className="design">
                         <FontAwesomeIcon icon={faPalette} />
@@ -58,9 +61,8 @@ const Header = ({
                     className="search-wrapper"
                     onClick={() => {
                         setShowFederatedSearch(!showFederatedSearch)
-                        // setSearchVisible(!searchVisible);
-                        setCatEyeGlasses(false);
-                        setCatSunglasses(false);
+                        setCatTwo(false);
+                        setCatOne(false);
                     }}
                 >
                     <svg
