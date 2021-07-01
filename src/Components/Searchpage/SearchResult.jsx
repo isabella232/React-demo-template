@@ -119,7 +119,6 @@ const SearchResults = ({ selectedOption, searchVisible, setSearchVisible, catOne
                 </div>
                 {modal ? (
                     <div className="modal-bg" onClick={(e) => {
-                        console.log(e)
                         if (e.target === e.currentTarget) {
                             setModal(false)
                         }
