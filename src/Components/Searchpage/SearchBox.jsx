@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
 
 // ALGOLIA'S IMPORT
@@ -7,6 +8,7 @@ import {
     VoiceSearch,
     connectCurrentRefinements
 } from 'react-instantsearch-dom';
+import {getQuery} from '../../actions/getQuery'
 
 // UNIQBY LIB
 import uniqBy from 'lodash.uniqby';
@@ -18,6 +20,7 @@ const SearchBox = ({
     setSearchVisible,
     query
 }) => {
+    const dispatch = useDispatch()
     return (
         <div>
             <div className="searchBox-wrapper">
@@ -26,12 +29,14 @@ const SearchBox = ({
                         e.preventDefault()
                         setShowFederatedSearch(false)
                         setSearchVisible(true)
+                        dispatch(getQuery(e.currentTarget.value))
                         setQuery(e.currentTarget.value)
                     }}>
                     <input
                         type="search"
                         value={query}
                         onChange={event => {
+                            dispatch(getQuery(event.currentTarget.value))
                             setQuery(event.currentTarget.value)
                             refine(event.currentTarget.value)
                         }}

@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
 // COMPONENT IMPORT
 import logo from '../../Assets/Images/logo.jpeg';
 import headerUp from '../../Assets/Images/headerUp.png';
 import SelectPersona from './Persona'
+import {searchVisible, federatedSearchVisible, catOne, catTwo}  from '../../actions/visibility'
 
 //FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -18,6 +20,8 @@ const Header = ({
     showFederatedSearch,
     setShowFederatedSearch
 }) => {
+    const selector = useSelector(state => console.log(state.visibility.searchVisible))
+    const dispatch = useDispatch()
     return (
         <header className="header">
             <img src={headerUp} alt="" className="headerUp" />
@@ -30,6 +34,7 @@ const Header = ({
                 <ul>
                     <li
                         onClick={() => {
+                            dispatch(catOne())
                             setCatOne(true);
                             setSearchVisible(false);
                             setCatTwo(false);
@@ -40,6 +45,7 @@ const Header = ({
                     </li>
                     <li
                         onClick={() => {
+                            dispatch(catTwo())
                             setCatTwo(true);
                             setCatOne(false);
                             setSearchVisible(false);
@@ -52,7 +58,7 @@ const Header = ({
                         <FontAwesomeIcon icon={faPalette} />
                         <span>DESIGN YOUR OWN</span>
                     </li>
-                    <li>PRESCRIPTION</li>
+                    <li onClick={()=> dispatch(federatedSearchVisible())}>PRESCRIPTION</li>
                     <li>OUR ICONS</li>
                     <li className="promo">PROMO</li>
                     <li><SelectPersona setSelectedOption={setSelectedOption} /></li>
@@ -60,6 +66,8 @@ const Header = ({
                 <div
                     className="search-wrapper"
                     onClick={() => {
+                        dispatch(searchVisible())
+                        dispatch(federatedSearchVisible())
                         setShowFederatedSearch(!showFederatedSearch)
                         setCatTwo(false);
                         setCatOne(false);

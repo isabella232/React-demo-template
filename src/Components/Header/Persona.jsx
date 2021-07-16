@@ -1,5 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
+import { useSelector, useDispatch } from "react-redux";
+import {selectPersona} from '../../actions/selectPersona'
 
 const SelectPersona = ({ setSelectedOption }) => {
     const options = [
@@ -41,13 +43,16 @@ const SelectPersona = ({ setSelectedOption }) => {
         menuList: styles => ({ backgroundColor: 'transparent', })
 
     };
+    const dispatch = useDispatch()
 
     const selectValue = (e) => {
+        dispatch(selectPersona(e.value))
         setSelectedOption(e.value)
     }
 
+
     return (
-        <Select options={options} onChange={selectValue} setSelectedOption={setSelectedOption} styles={colourStyles} placeholder={"Persona"} />
+        <Select options={options}  onChange={selectValue} setSelectedOption={setSelectedOption} styles={colourStyles} placeholder={"Persona"} />
     )
 
 }
