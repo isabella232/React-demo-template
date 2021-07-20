@@ -143,6 +143,7 @@ const SearchResults = () => {
                 {showModal ? (
                     <div className="modal-bg" 
                     onClick={(e) => {
+
                         if (e.target === e.currentTarget) {
                             dispatch(showModalPDP(false))
                         }

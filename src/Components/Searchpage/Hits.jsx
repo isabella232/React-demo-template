@@ -31,7 +31,7 @@ const dispatch = useDispatch()
             <div className="sort-and-stat">
                 <Stats />
                 <SortBy
-                    defaultRefinement="rayban_merged"
+                    defaultRefinement={window.index}
                     items={[
                         {
                             value: window.index,
