@@ -9,37 +9,38 @@ import {
     connectCurrentRefinements
 } from 'react-instantsearch-dom';
 import {getQuery} from '../../actions/getQuery'
+import { searchVisible, federatedSearchVisible } from '../../actions/visibility';
 
 // UNIQBY LIB
 import uniqBy from 'lodash.uniqby';
 
 const SearchBox = ({
-    refine,
-    setQuery,
-    setShowFederatedSearch,
-    setSearchVisible,
-    query
+    refine
 }) => {
     const dispatch = useDispatch()
+    const {query} = useSelector(state => state.getQuery)
     return (
         <div>
             <div className="searchBox-wrapper">
                 <form action="" role="search"
                     onSubmit={(e) => {
                         e.preventDefault()
-                        setShowFederatedSearch(false)
-                        setSearchVisible(true)
+                        dispatch(federatedSearchVisible(false))
+                        dispatch(searchVisible(true))
                         dispatch(getQuery(e.currentTarget.value))
-                        setQuery(e.currentTarget.value)
                     }}>
                     <input
                         type="search"
                         value={query}
                         onChange={event => {
                             dispatch(getQuery(event.currentTarget.value))
-                            setQuery(event.currentTarget.value)
-                            refine(event.currentTarget.value)
+                            query ? refine(query) : refine(event.currentTarget.value)
+                            
                         }}
+                        // onInput={event => {
+                        //     dispatch(getQuery(event.currentTarget.value))
+                        //     query ? refine(query) : refine(event.currentTarget.value)
+                        // }}
                         placeholder="Search..."
 
                     />

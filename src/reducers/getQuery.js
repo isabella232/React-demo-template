@@ -1,5 +1,5 @@
 const initState = {
-    query : null
+    query : ''
 }
 
 const getQuery  = (state = initState, action) => {

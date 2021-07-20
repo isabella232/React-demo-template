@@ -1,6 +1,6 @@
 
 const initState = {
-    searchVisible: false,
+    searchVisible: null,
     federatedSearchVisible: false,
     catOne : false,
     catTwo: false
@@ -11,22 +11,22 @@ switch(action.type){
     case 'SEARCHVISIBLE':
         return {
             ...state,
-            searchVisible: true
+            searchVisible: action.payload
         };
     case 'FEDERATEDSEARCH_VISIBLE':
             return {
                 ...state,
-                federatedSearchVisible: !state.federatedSearchVisible
+                federatedSearchVisible: action.payload
             };
     case 'CAT_ONE':
             return {
                 ...state,
-                catOne: true
+                catOne: action.payload
             };
     case 'CAT_TWO':
             return {
                 ...state,
-                catTwo: true
+                catTwo: action.payload
             };
         default:
       return { ...state };

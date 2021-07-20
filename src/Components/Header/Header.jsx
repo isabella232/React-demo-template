@@ -11,45 +11,38 @@ import {searchVisible, federatedSearchVisible, catOne, catTwo}  from '../../acti
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPalette } from '@fortawesome/free-solid-svg-icons'
 
+import { motion } from 'framer-motion';
 
-const Header = ({
-    setSelectedOption,
-    setSearchVisible,
-    setCatOne,
-    setCatTwo,
-    showFederatedSearch,
-    setShowFederatedSearch
-}) => {
-    const selector = useSelector(state => console.log(state.visibility.searchVisible))
+
+const Header = () => {
+    const federatedSearchVisibleSelector= useSelector(state => state.visibility.federatedSearchVisible)
     const dispatch = useDispatch()
     return (
         <header className="header">
             <img src={headerUp} alt="" className="headerUp" />
             <div className="header-wrapper">
                 <img src={logo} alt="logo" className="logo" onClick={() => {
-                    setCatOne(false);
-                    setSearchVisible(false);
-                    setCatTwo(false);
+                   dispatch(catOne(false))
+                   dispatch(searchVisible(false))
+                   dispatch(catTwo(false))
                 }} />
                 <ul>
                     <li
                         onClick={() => {
-                            dispatch(catOne())
-                            setCatOne(true);
-                            setSearchVisible(false);
-                            setCatTwo(false);
-                            setShowFederatedSearch(false)
+                            dispatch(catOne(true))
+                            dispatch(searchVisible(false))
+                            dispatch(catTwo(false))
+                            dispatch(federatedSearchVisible(false))
                         }}
                     >
                         CAT ONE
                     </li>
                     <li
                         onClick={() => {
-                            dispatch(catTwo())
-                            setCatTwo(true);
-                            setCatOne(false);
-                            setSearchVisible(false);
-                            setShowFederatedSearch(false)
+                            dispatch(catOne(false))
+                            dispatch(searchVisible(false))
+                            dispatch(catTwo(true))
+                            dispatch(federatedSearchVisible(false))
                         }}
                     >
                         CAT TWO
@@ -58,19 +51,18 @@ const Header = ({
                         <FontAwesomeIcon icon={faPalette} />
                         <span>DESIGN YOUR OWN</span>
                     </li>
-                    <li onClick={()=> dispatch(federatedSearchVisible())}>PRESCRIPTION</li>
+                    <li>PRESCRIPTION</li>
                     <li>OUR ICONS</li>
                     <li className="promo">PROMO</li>
-                    <li><SelectPersona setSelectedOption={setSelectedOption} /></li>
+                    <li><SelectPersona /></li>
                 </ul>
                 <div
                     className="search-wrapper"
                     onClick={() => {
-                        dispatch(searchVisible())
-                        dispatch(federatedSearchVisible())
-                        setShowFederatedSearch(!showFederatedSearch)
-                        setCatTwo(false);
-                        setCatOne(false);
+                        dispatch(catOne(false))
+                        dispatch(searchVisible(false))
+                        dispatch(catTwo(false))
+                        federatedSearchVisibleSelector ? (dispatch(federatedSearchVisible(false))) : (dispatch(federatedSearchVisible(true)))
                     }}
                 >
                     <svg

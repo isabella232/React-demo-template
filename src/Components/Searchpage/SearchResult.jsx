@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import algoliasearch from 'algoliasearch/lite';
+import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 
 import {
     InstantSearch,
@@ -17,28 +19,48 @@ import ProductDetails from '../ProductsDetails/ProductsDetails';
 import Banner from './banner'
 import CustomSuggestions from './Suggestions';
 import FederatedSearch from '../Federated Search/FederatedSearch';
+import { showModalPDP } from '../../actions/productDetail';
+import { federatedSearchVisible } from '../../actions/visibility';
 
 
-const SearchResults = ({ selectedOption, searchVisible, setSearchVisible, catOne, catTwo, showFederatedSearch, setShowFederatedSearch }) => {
+const SearchResults = () => {
     const searchClient = algoliasearch(
         window.appID,
         window.key
     );
+
+    // REDUX STATE & ACTIONS
+    const dispatch = useDispatch()
+    const {searchVisible, catTwo, catOne}  = useSelector(state => state.visibility)
+    const federatedvisble = useSelector(state => state.visibility.federatedSearchVisible)
+    const {showModal} = useSelector(state => state.productDetail)
+    const {persona} = useSelector(state => state.selectedPersona)
+
+    // REACT STATE
     const [filterAnim, setFilterAnim] = useState(true)
-    const [product, setProduct] = useState(null)
-    const [modal, setModal] = useState(false)
-    const [query, setQuery] = useState('')
     const [isDynamicFactesOn, setIsDynamicFactesOn] = useState(false);
 
     return (
         <div className="searchResult-wrapper">
-            <InstantSearch searchClient={searchClient} indexName={window.index}>
-                <div className={`container-federated ${showFederatedSearch
+            <InstantSearch 
+            searchClient={searchClient} 
+            indexName={window.index}>
+                <div 
+                className={`container-federated ${federatedvisble
                     ? 'active'
                     : 'hidden'
                     }`}
+                    onClick={(e) => {
+                        
+                        if (e.target === e.currentTarget) {
+                            dispatch(federatedSearchVisible(false))
+                          
+                        }
+                    }}
                 >
-                    <FederatedSearch query={query} setQuery={setQuery} setShowFederatedSearch={setShowFederatedSearch} showFederatedSearch={showFederatedSearch} searchVisible={searchVisible} setSearchVisible={setSearchVisible} setProduct={setProduct} setModal={setModal} />
+                  
+                    <FederatedSearch />
+                 
 
                 </div>
                 <div
@@ -64,18 +86,18 @@ const SearchResults = ({ selectedOption, searchVisible, setSearchVisible, catOne
 
                     </div>
                     <div className="search-panel">
-                        <CustomSearchBox query={query} setQuery={setQuery} searchVisible={searchVisible} setSearchVisible={setSearchVisible} setShowFederatedSearch={setShowFederatedSearch} showFederatedSearch={setShowFederatedSearch} />
+                        <CustomSearchBox />
                         <Index indexName={window.indexSugg} indexId="suggestions">
-                            <CustomSuggestions setQuery={setQuery} query={query} attribute='title' />
+                            <CustomSuggestions attribute='title' />
                         </Index>
                         <Banner />
 
                         {catOne ? (
                             <div className="searchPanel-results">
                                 <FilterBtn filterAnim={filterAnim} setFilterAnim={setFilterAnim} />
-                                <Configure userToken={selectedOption} filters="categorylvl3:One" enablePersonalization={true} />
+                                <Configure userToken={persona} filters="categorylvl3:One" enablePersonalization={true} />
                                 <CustomFilters filterAnim={filterAnim} isDynamicFactesOn={isDynamicFactesOn} setIsDynamicFactesOn={setIsDynamicFactesOn} />
-                                <CustomHits setModal={setModal} setProduct={setProduct} setShowFederatedSearch={setShowFederatedSearch} setSearchVisible={setSearchVisible} />
+                                <CustomHits />
                             </div>
                         ) : (
                             // <div className="searchPanel-results">
@@ -90,9 +112,10 @@ const SearchResults = ({ selectedOption, searchVisible, setSearchVisible, catOne
                         }
                         {catTwo ? (<div className="searchPanel-results">
                             <FilterBtn filterAnim={filterAnim} setFilterAnim={setFilterAnim} />
-                            <Configure userToken={selectedOption} filters="categorylvl3:'Vision Care'" enablePersonalization={true} />
+                            <Configure userToken={persona} filters="categorylvl3:'Vision Care'" enablePersonalization={true} />
                             <CustomFilters filterAnim={filterAnim} isDynamicFactesOn={isDynamicFactesOn} setIsDynamicFactesOn={setIsDynamicFactesOn} />
-                            <CustomHits setModal={setModal} setProduct={setProduct} setShowFederatedSearch={setShowFederatedSearch} setSearchVisible={setSearchVisible} />
+                            <CustomHits   />
+
                         </div>) : (
                             // <div className="searchPanel-results">
                             //     <Configure userToken={selectedOption} enablePersonalization={true} />
@@ -103,10 +126,10 @@ const SearchResults = ({ selectedOption, searchVisible, setSearchVisible, catOne
                             ""
                         )}
                         {searchVisible ? (<div className="searchPanel-results">
-                            <Configure userToken={selectedOption} enablePersonalization={true} />
+                            <Configure userToken={persona} enablePersonalization={true} />
                             <FilterBtn filterAnim={filterAnim} setFilterAnim={setFilterAnim} />
                             <CustomFilters filterAnim={filterAnim} isDynamicFactesOn={isDynamicFactesOn} setIsDynamicFactesOn={setIsDynamicFactesOn} />
-                            <CustomHits setModal={setModal} setProduct={setProduct} setShowFederatedSearch={setShowFederatedSearch} setSearchVisible={setSearchVisible} />
+                            <CustomHits />
                         </div>) :
                             ("")
                         }
@@ -117,15 +140,15 @@ const SearchResults = ({ selectedOption, searchVisible, setSearchVisible, catOne
                         </div>
                     </div>
                 </div>
-                {modal ? (
-                    <div className="modal-bg" onClick={(e) => {
-                        console.log(e)
+                {showModal ? (
+                    <div className="modal-bg" 
+                    onClick={(e) => {
                         if (e.target === e.currentTarget) {
-                            setModal(false)
+                            dispatch(showModalPDP(false))
                         }
                     }}>
                         <div className="modal-wrapper fadeModal">
-                            <ProductDetails product={product} setModal={setModal} />
+                            <ProductDetails  />
                         </div>
                     </div>
                 ) : ""}

@@ -1,13 +1,13 @@
 @import "./mixin.scss";
 @import "./variables.scss";
 
-.modal-bg {
-    height: 100%;
-    width: 100%;
+.modal-bg { 
+    height: 100vh;
+    width: 100vw;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    position: absolute;
+    position: fixed;
+    animation: modalBG forwards 0.5s ease-in-out
 }
 
 .modal-wrapper {
@@ -127,6 +127,18 @@
 
 .fadeOutModal {
     animation: fadeOutModal 0.5s forwards ease-in-out;
+}
+
+@keyframes modalBG {
+    0%{
+       
+        background-color: rgba(0, 0, 0, 0);
+    }
+    100%{
+        background-color: rgba(0, 0, 0, 0.2);
+       
+    }
+    
 }
 
 @keyframes fadeModal {

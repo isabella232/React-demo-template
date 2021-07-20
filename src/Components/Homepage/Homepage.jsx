@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 // IMPORT AASSET
 import headerBand from '../../Assets/Images/headerBand.png';
@@ -9,8 +10,11 @@ import img4 from '../../Assets/Images/img4.png';
 import rbVideo from '../../Assets/Videos/rbVideo.webm'
 import footer from '../../Assets/Images/footer.png';
 
+import CarouselHome from './Carousel';
 
-const Homepage = ({ searchVisible, catTwo, catOne }) => {
+
+const Homepage = () => {
+    const {searchVisible, catOne, catTwo} = useSelector(state => state.visibility)
     return (
         <div className={`homepage-wrapper ${searchVisible || catOne || catTwo ? 'hidden' : 'active'}`}>
             <div>
@@ -18,6 +22,10 @@ const Homepage = ({ searchVisible, catTwo, catOne }) => {
             </div>
             <div>
                 <video src={rbVideo} autoPlay loop />
+            </div>
+            <div className="carouselHome">
+                <h2>Our Iconic Aviator</h2>
+                <CarouselHome/>
             </div>
             <div>
                 <img src={img1} alt="home" />

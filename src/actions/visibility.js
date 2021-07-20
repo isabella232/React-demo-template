@@ -1,20 +1,25 @@
-export const searchVisible = () => (dispatch) => {
+export const searchVisible = (value) => (dispatch) => {
     dispatch({
-        type: 'SEARCHVISIBLE'
+        type: 'SEARCHVISIBLE',
+        payload: value
     })
 }
-export const federatedSearchVisible = () => (dispatch) => {
+export const federatedSearchVisible = (value) => (dispatch) => {
     dispatch({
-        type: 'FEDERATEDSEARCH_VISIBLE'
+        type: 'FEDERATEDSEARCH_VISIBLE',
+        payload: value
     })
 }
-export const catOne = () => (dispatch) => {
+export const catOne = (value) => (dispatch) => {
     dispatch({
-        type: 'CAT_ONE'
+        type: 'CAT_ONE',
+        payload: value
+        
     })
 }
-export const catTwo = () => (dispatch) => {
+export const catTwo = (value) => (dispatch) => {
     dispatch({
-        type: 'CAT_TWO'
+        type: 'CAT_TWO',
+        payload: value
     })
 }

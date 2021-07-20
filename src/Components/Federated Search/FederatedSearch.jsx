@@ -3,17 +3,17 @@ import React from 'react'
 // ALGOLIA IMPORT
 import { Configure } from 'react-instantsearch-dom';
 
-
 // COMPONENT IMPORT
 import { CustomHits } from '../Searchpage/Hits';
 import CustomSuggestions from '../Searchpage/Suggestions';
 // import {HierarchicalMenu, CatRefinementLists, CustomFilters, CustomCateRefinementList} from '../Searchage/Filters'
 import CustomSearchBox from '../Searchpage/SearchBox';
+// import { federatedSearchVisible } from '../../actions/visibility';
 
 
 
 
-const FederatedSearch = ({ query, setQuery, setShowFederatedSearch, showFederatedSearch, searchVisible, setSearchVisible, setProduct, setModal }) => {
+const FederatedSearch = () => {
     return (
         <div className="federatedSearch">
             <div className="federatedSearch-wrapper">
@@ -28,13 +28,13 @@ const FederatedSearch = ({ query, setQuery, setShowFederatedSearch, showFederate
         </div> */}
                 <div className="federatedSearch-suggestions">
                     <h3>Suggestions</h3>
-                    <CustomSuggestions query={query} setQuery={setQuery} />
+                    <CustomSuggestions />
                 </div>
                 <div className="federatedSearch-products">
-                    <CustomSearchBox query={query} setQuery={setQuery} setShowFederatedSearch={setShowFederatedSearch} showFederatedSearch={showFederatedSearch} searchVisible={searchVisible} setSearchVisible={setSearchVisible} />
+                    <CustomSearchBox />
                     <h3 className="federated-title">Products</h3>
                     <Configure hitsPerPage={20} />
-                    <CustomHits setProduct={setProduct} setModal={setModal} setShowFederatedSearch={setShowFederatedSearch} setSearchVisible={setSearchVisible} />
+                    <CustomHits />
                 </div>
             </div>
         </div>

@@ -371,6 +371,9 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
                 values={[currentRefinement.min, currentRefinement.max]}
                 onChange={onChange}
                 onValuesUpdated={onValuesUpdated}
+                background=''
+               
+                
             >
                 <div
                     className="rheostat-marker rheostat-marker--large"
