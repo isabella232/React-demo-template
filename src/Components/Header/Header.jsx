@@ -6,6 +6,7 @@ import logo from '../../Assets/Images/logo.jpeg';
 import headerUp from '../../Assets/Images/headerUp.png';
 import SelectPersona from './Persona'
 import {searchVisible, federatedSearchVisible, catOne, catTwo}  from '../../actions/visibility'
+import { getQuery } from '../../actions/getQuery';
 
 //FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -33,6 +34,7 @@ const Header = () => {
                             dispatch(searchVisible(false))
                             dispatch(catTwo(false))
                             dispatch(federatedSearchVisible(false))
+                            dispatch(getQuery(''))
                         }}
                     >
                         CAT ONE
@@ -43,6 +45,7 @@ const Header = () => {
                             dispatch(searchVisible(false))
                             dispatch(catTwo(true))
                             dispatch(federatedSearchVisible(false))
+                            dispatch(getQuery(''))
                         }}
                     >
                         CAT TWO
@@ -62,6 +65,7 @@ const Header = () => {
                         dispatch(catOne(false))
                         dispatch(searchVisible(false))
                         dispatch(catTwo(false))
+                        dispatch(getQuery(''))
                         federatedSearchVisibleSelector ? (dispatch(federatedSearchVisible(false))) : (dispatch(federatedSearchVisible(true)))
                     }}
                 >
