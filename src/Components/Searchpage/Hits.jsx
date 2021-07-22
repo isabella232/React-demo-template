@@ -21,9 +21,9 @@ const dispatch = useDispatch()
 
   
   const listItem = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: {
-        delay: 0.3
+    hidden: { opacity: 0, y: 100 },
+    show: { opacity: 1, y: 0, transition: {
+        delay: 0.2
     } }
   };
     return (
@@ -50,7 +50,7 @@ const dispatch = useDispatch()
             </div>
             <ul  className="hits-list">
                 {hits.map((hit) => (
-                    <motion.li  key={hit.objectID}    ariants={listItem} className="hit-list" onClick={
+                    <motion.li  key={hit.objectID}  variants={listItem} initial="hidden" animate="show" className="hit-list" onClick={
                         () => {
                             dispatch(productDetail(hit))
                             dispatch(showModalPDP(true))
