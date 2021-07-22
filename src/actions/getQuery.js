@@ -4,3 +4,10 @@ export const getQuery = (value) => (dispatch) => {
         payload : value
     })
 }
+
+export const getInput = (value) => (dispatch) => {
+    dispatch({
+        type: 'GET_INPUT',
+        payload : value
+    })
+}

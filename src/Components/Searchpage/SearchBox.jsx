@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -8,7 +8,7 @@ import {
     VoiceSearch,
     connectCurrentRefinements
 } from 'react-instantsearch-dom';
-import {getQuery} from '../../actions/getQuery'
+import {getQuery, getInput} from '../../actions/getQuery'
 import { searchVisible, federatedSearchVisible } from '../../actions/visibility';
 
 // UNIQBY LIB
@@ -18,7 +18,10 @@ const SearchBox = ({
     refine
 }) => {
     const dispatch = useDispatch()
-    const {query} = useSelector(state => state.getQuery)
+    const {query, input} = useSelector(state => state.getQuery)
+    const inputRef = useRef()
+ 
+    
     return (
         <div>
             <div className="searchBox-wrapper">
@@ -30,11 +33,13 @@ const SearchBox = ({
                         dispatch(getQuery(e.currentTarget.value))
                     }}>
                     <input
+                        ref={inputRef}
                         type="search"
                         value={query}
                         onChange={event => {
+                            console.log(event.currentTarget.value)
                             dispatch(getQuery(event.currentTarget.value))
-                            query ? refine(query) : refine(event.currentTarget.value)
+                            refine(event.currentTarget.value)
                             
                         }}
                         // onInput={event => {
