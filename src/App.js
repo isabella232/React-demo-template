@@ -1,4 +1,6 @@
 import React from 'react';
+import { InstantSearch } from 'react-instantsearch-dom';
+import algoliasearch from 'algoliasearch/lite';
 
 //CSS / SCSS
 
@@ -10,14 +12,14 @@ import SearchResults from './Components/Searchpage/SearchResult';
 import Homepage from './Components/Homepage/Homepage';
 
 const App = () => {
+    const searchClient = algoliasearch(window.appID, window.key);
     return (
         <div>
-            <Header
-            />
-            <SearchResults
-            />
-            <Homepage
-            />
+            <InstantSearch searchClient={searchClient} indexName={window.index}>
+                <Header />
+                <SearchResults />
+                <Homepage />
+            </InstantSearch>
         </div>
     );
 };

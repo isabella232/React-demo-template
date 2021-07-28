@@ -15,34 +15,14 @@
     position: relative;
 }
 
-// SEARCHBOX
-
-.searchBox-wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    form {
-        width: 100%;
-    }
-
-    input {
-        width: 100%;
-        margin: 1rem auto;
-        border-radius: 2px;
-        border: 1px solid $third-color;
-        padding: 0.6rem;
-        background-color: $third-color;
-        transition: 0.2s ease-in-out;
-
-        &:focus {
-            transition: 0.2s ease-in-out;
-            background-color: $fourth-color;
-            outline: none;
-        }
-    }
+.hits-panel-wrapper{
+    position: relative;
+    flex-grow: 1;
+    width: 80%;
+    will-change: width;
 }
+
+
 
 // VOICESEARCH
 .voiceSearch-wrapper {

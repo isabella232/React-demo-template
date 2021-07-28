@@ -14,6 +14,7 @@
     font-size: 0.8rem;
     background-color: $fourth-color;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 @mixin btn-hover {
@@ -51,6 +52,9 @@
     .infos {
         h3 {
             font-size: 1rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
         p {
             font-size: 1rem;

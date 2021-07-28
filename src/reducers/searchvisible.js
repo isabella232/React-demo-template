@@ -3,7 +3,8 @@ const initState = {
     searchVisible: null,
     federatedSearchVisible: false,
     catOne : false,
-    catTwo: false
+    catTwo: false,
+    homepage: true
 }
 
  const visibility  = (state = initState, action) => {
@@ -28,6 +29,11 @@ switch(action.type){
                 ...state,
                 catTwo: action.payload
             };
+            case 'HOMEPAGE':
+                return {
+                    ...state,
+                    homepage: action.payload
+                };
         default:
       return { ...state };
 

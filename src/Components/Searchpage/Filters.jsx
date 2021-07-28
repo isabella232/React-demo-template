@@ -39,7 +39,9 @@ const CatFilter = ({
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <a
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href={createURL(item.value)}
                             style={{ fontWeight: item.isRefined ? 'bold' : '' }}
                             onClick={event => {
@@ -81,7 +83,9 @@ const CatRefinementList = ({ items, refine }) => {
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <button
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href="#"
                             onClick={event => {
                                 event.preventDefault();
@@ -121,7 +125,9 @@ const ColorRefinementList = ({ items, refine }) => {
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <button
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href="#"
                             onClick={event => {
                                 event.preventDefault();
@@ -161,7 +167,9 @@ const SizeRefinementList = ({ items, refine }) => {
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <button
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href="#"
                             style={{ fontWeight: item.isRefined ? 'bold' : '' }}
                             onClick={event => {
@@ -191,7 +199,9 @@ const CategoriesRefinementList = ({ items, refine }) => {
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <button
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href="#"
                             style={{ fontWeight: item.isRefined ? 'bold' : '' }}
                             onClick={event => {
@@ -233,7 +243,9 @@ const FrameShapeRefinementList = ({ items, refine }) => {
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <button
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href="#"
                             onClick={event => {
                                 event.preventDefault();
@@ -273,7 +285,9 @@ const GenderRefinementList = ({ items, refine }) => {
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <button
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href="#"
                             onClick={event => {
                                 event.preventDefault();
@@ -313,7 +327,9 @@ const MaterialRefinementList = ({ items, refine }) => {
                 {items.map(item => (
                     <li className="filter-list" key={item.label}>
                         <button
-                            className="button-filter"
+                            className={`button-filter ${
+                                item.isRefined ? 'refined-filter' : ''
+                            }`}
                             href="#"
                             onClick={event => {
                                 event.preventDefault();

@@ -11,6 +11,11 @@
     justify-content: space-between;
     align-items: center;
 
+    .list-img-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
     ul {
         display: flex;
         align-items: center;
@@ -24,6 +29,7 @@
             font-weight: 500;
             cursor: pointer;
             position: relative;
+            font-size: 1rem;
 
             &::before {
                 content: "";
@@ -55,13 +61,13 @@
     }
 
     .logo {
-        width: 10%;
+        width: 18%;
         cursor: pointer;
     }
 
     .search-wrapper {
-        border-left: 1px solid $third-color;
-        width: 10%;
+        // border-left: 1px solid $third-color;
+        width: 40%;
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -71,9 +77,68 @@
             font-size: 1rem;
             margin-left: 1rem;
         }
-        svg {
-            width: 30px;
-            margin-left: 1rem;
+       
+    }
+}
+
+// SEARCHBOX
+
+.searchBox-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form {
+        width: 100%;
+        display: flex;
+        position: relative;
+    }
+
+    input {
+        width: 100%;
+        margin: 1rem auto;
+        border-radius: 2px;
+        border: 1px solid $third-color;
+        padding: 0.6rem;
+        background-color: $third-color;
+        transition: 0.2s ease-in-out;
+
+        &:focus {
+            transition: 0.2s ease-in-out;
+            background-color: white;
+            outline: none;
         }
     }
+     svg {
+            width: 30px;
+            right: 1rem;
+            top: 1.2rem;
+            position: absolute;
+        }
+}
+
+// VOICESEARCH
+.voiceSearch-wrapper {
+    width: 100%;
+
+    .ais-VoiceSearch {
+        position: absolute;
+        right: 3rem;
+        top: 30%;
+        cursor: pointer;
+        .ais-VoiceSearch-button {
+            position: unset;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    }
+}
+.ais-VoiceSearch-status {
+    display: none;
+}
+
+.stop-scrolling{
+    overflow: hidden;
 }
