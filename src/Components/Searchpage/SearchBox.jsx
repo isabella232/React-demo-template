@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
 
 // ALGOLIA'S IMPORT
@@ -7,34 +8,44 @@ import {
     VoiceSearch,
     connectCurrentRefinements
 } from 'react-instantsearch-dom';
+import {getQuery, getInput} from '../../actions/getQuery'
+import { searchVisible, federatedSearchVisible } from '../../actions/visibility';
 
 // UNIQBY LIB
 import uniqBy from 'lodash.uniqby';
 
 const SearchBox = ({
-    refine,
-    setQuery,
-    setShowFederatedSearch,
-    setSearchVisible,
-    query
+    refine
 }) => {
+    const dispatch = useDispatch()
+    const {query, input} = useSelector(state => state.getQuery)
+    const inputRef = useRef()
+ 
+    
     return (
         <div>
             <div className="searchBox-wrapper">
                 <form action="" role="search"
                     onSubmit={(e) => {
                         e.preventDefault()
-                        setShowFederatedSearch(false)
-                        setSearchVisible(true)
-                        setQuery(e.currentTarget.value)
+                        dispatch(federatedSearchVisible(false))
+                        dispatch(searchVisible(true))
+                        dispatch(getQuery(e.currentTarget.value))
                     }}>
                     <input
+                        ref={inputRef}
                         type="search"
                         value={query}
                         onChange={event => {
-                            setQuery(event.currentTarget.value)
+                            console.log(event.currentTarget.value)
+                            dispatch(getQuery(event.currentTarget.value))
                             refine(event.currentTarget.value)
+                            
                         }}
+                        // onInput={event => {
+                        //     dispatch(getQuery(event.currentTarget.value))
+                        //     query ? refine(query) : refine(event.currentTarget.value)
+                        // }}
                         placeholder="Search..."
 
                     />

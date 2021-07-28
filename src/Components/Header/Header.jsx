@@ -1,49 +1,51 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
 // COMPONENT IMPORT
 import logo from '../../Assets/Images/logo.jpeg';
 import headerUp from '../../Assets/Images/headerUp.png';
 import SelectPersona from './Persona'
+import {searchVisible, federatedSearchVisible, catOne, catTwo}  from '../../actions/visibility'
+import { getQuery } from '../../actions/getQuery';
 
 //FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPalette } from '@fortawesome/free-solid-svg-icons'
 
+import { motion } from 'framer-motion';
 
-const Header = ({
-    setSelectedOption,
-    setSearchVisible,
-    setCatOne,
-    setCatTwo,
-    showFederatedSearch,
-    setShowFederatedSearch
-}) => {
+
+const Header = () => {
+    const federatedSearchVisibleSelector= useSelector(state => state.visibility.federatedSearchVisible)
+    const dispatch = useDispatch()
     return (
         <header className="header">
             <img src={headerUp} alt="" className="headerUp" />
             <div className="header-wrapper">
                 <img src={logo} alt="logo" className="logo" onClick={() => {
-                    setCatOne(false);
-                    setSearchVisible(false);
-                    setCatTwo(false);
+                   dispatch(catOne(false))
+                   dispatch(searchVisible(false))
+                   dispatch(catTwo(false))
                 }} />
                 <ul>
                     <li
                         onClick={() => {
-                            setCatOne(true);
-                            setSearchVisible(false);
-                            setCatTwo(false);
-                            setShowFederatedSearch(false)
+                            dispatch(catOne(true))
+                            dispatch(searchVisible(false))
+                            dispatch(catTwo(false))
+                            dispatch(federatedSearchVisible(false))
+                            dispatch(getQuery(''))
                         }}
                     >
                         CAT ONE
                     </li>
                     <li
                         onClick={() => {
-                            setCatTwo(true);
-                            setCatOne(false);
-                            setSearchVisible(false);
-                            setShowFederatedSearch(false)
+                            dispatch(catOne(false))
+                            dispatch(searchVisible(false))
+                            dispatch(catTwo(true))
+                            dispatch(federatedSearchVisible(false))
+                            dispatch(getQuery(''))
                         }}
                     >
                         CAT TWO
@@ -55,14 +57,16 @@ const Header = ({
                     <li>PRESCRIPTION</li>
                     <li>OUR ICONS</li>
                     <li className="promo">PROMO</li>
-                    <li><SelectPersona setSelectedOption={setSelectedOption} /></li>
+                    <li><SelectPersona /></li>
                 </ul>
                 <div
                     className="search-wrapper"
                     onClick={() => {
-                        setShowFederatedSearch(!showFederatedSearch)
-                        setCatTwo(false);
-                        setCatOne(false);
+                        dispatch(catOne(false))
+                        dispatch(searchVisible(false))
+                        dispatch(catTwo(false))
+                        dispatch(getQuery(''))
+                        federatedSearchVisibleSelector ? (dispatch(federatedSearchVisible(false))) : (dispatch(federatedSearchVisible(true)))
                     }}
                 >
                     <svg

@@ -1,7 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
+import { useDispatch } from "react-redux";
+import {selectPersona} from '../../actions/selectPersona'
 
-const SelectPersona = ({ setSelectedOption }) => {
+const SelectPersona = () => {
     const options = [
         { value: 'RB_Tiffany', label: 'Tiffany' },
         { value: 'RB_Ben', label: 'Ben' },
@@ -41,13 +43,15 @@ const SelectPersona = ({ setSelectedOption }) => {
         menuList: styles => ({ backgroundColor: 'transparent', })
 
     };
+    const dispatch = useDispatch()
 
     const selectValue = (e) => {
-        setSelectedOption(e.value)
+        dispatch(selectPersona(e.value))
     }
 
+
     return (
-        <Select options={options} onChange={selectValue} setSelectedOption={setSelectedOption} styles={colourStyles} placeholder={"Persona"} />
+        <Select options={options} onChange={selectValue}  styles={colourStyles} placeholder={"Persona"} />
     )
 
 }

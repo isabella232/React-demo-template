@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 
 import {
     Highlight,
@@ -6,11 +7,25 @@ import {
     Stats,
     connectHits,
 } from 'react-instantsearch-dom';
+import { showModalPDP, productDetail } from '../../actions/productDetail';
+import { federatedSearchVisible, searchVisible } from '../../actions/visibility';
+
+import { motion } from 'framer-motion';
+
+
 
 
 // MAIN SEARCH RESULT PAGE + FEDERATED
-const Hits = ({ hits, setProduct, setModal, setShowFederatedSearch, setSearchVisible }) => {
+const Hits = ({ hits }) => {
+const dispatch = useDispatch()
 
+  
+  const listItem = {
+    hidden: { opacity: 0, y: 100 },
+    show: { opacity: 1, y: 0, transition: {
+        delay: 0.2
+    } }
+  };
     return (
         <div className="hits-wrapper">
             <div className="sort-and-stat">
@@ -33,16 +48,18 @@ const Hits = ({ hits, setProduct, setModal, setShowFederatedSearch, setSearchVis
                     ]}
                 />
             </div>
-            <ul className="hits-list">
+            <ul  className="hits-list">
                 {hits.map((hit) => (
-                    <li key={hit.objectID} className="hit-list" onClick={
+                    <motion.li  key={hit.objectID}  variants={listItem} initial="hidden" animate="show" className="hit-list" onClick={
                         () => {
-                            setProduct(hit)
-                            setModal(true)
-                            setShowFederatedSearch(false)
-                            setSearchVisible(true)
+                            dispatch(productDetail(hit))
+                            dispatch(showModalPDP(true))
+                            dispatch(federatedSearchVisible(false))
+                            dispatch(searchVisible(true)) 
                         }
-                    }>
+                    }
+                 
+                    >
                         <div className="image-wrapper">
                             <img src={hit.image_link} alt="" />
                         </div>
@@ -53,7 +70,7 @@ const Hits = ({ hits, setProduct, setModal, setShowFederatedSearch, setSearchVis
                             /></h3>
                             <p>$ {hit.price}.00</p>
                         </div>
-                    </li>
+                    </motion.li>
                 ))}
             </ul>
         </div>
@@ -62,12 +79,18 @@ const Hits = ({ hits, setProduct, setModal, setShowFederatedSearch, setSearchVis
 
 // PDP
 const HitsModal = ({ hits }) => {
+    const dispatch = useDispatch()
 
     return (
         <div className="hits-wrapper">
             <ul className="hits-list hits-list-modal">
                 {hits.map((hit) => (
-                    <li key={hit.objectID} className="hit-list">
+                    <li key={hit.objectID} className="hit-list" onClick={()=> {
+                        dispatch(productDetail(hit))
+                            dispatch(showModalPDP(true))
+                            dispatch(federatedSearchVisible(false))
+                            dispatch(searchVisible(true)) 
+                    }}>
                         <div className="image-wrapper">
                             <img src={hit.image_link} alt="" />
                         </div>

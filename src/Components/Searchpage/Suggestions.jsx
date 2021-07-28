@@ -1,16 +1,19 @@
 import React from 'react'
 import { connectHits } from 'react-instantsearch-dom'
+import { useDispatch } from 'react-redux'
 
-const Suggestions = ({ hits, setQuery, refine }) => {
+import { getQuery } from '../../actions/getQuery'
+
+const Suggestions = ({ hits }) => {
+const dispatch = useDispatch()
   return (
     <div className="suggestions-container">
       {hits.slice(0, 9).map((hit) => (
         <div
           key={hit.title}
           className="suggestion"
-          onClick={(e) => setQuery(e.target.innerText)}
+          onClick={(e) => dispatch(getQuery(e.target.innerText))}
         >
-          {/* <Highlight hit={hit} attribute="title" /> */}
           <p>{hit.title}</p>
         </div>
       ))}

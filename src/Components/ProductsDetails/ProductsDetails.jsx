@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import algoliasearch from 'algoliasearch/lite';
 import { Configure, InstantSearch } from 'react-instantsearch-dom';
@@ -8,21 +9,23 @@ import { CustomHitsModal } from '../Searchpage/Hits'
 
 // IMPORT ASSETS
 import pdp from '../../Assets/Images/pdp.png'
+import { showModalPDP } from '../../actions/productDetail';
 
 
 
-const ProductDetails = ({ product, setModal }) => {
+const ProductDetails = () => {
     const searchClient = algoliasearch(
         window.appID,
         window.key
     );
+   const dispatch = useDispatch()
+   const {product} = useSelector(state => state.productDetail)
 
     if (product) {
-        setModal(true)
         return (
             <div className="modal-inner-wrapper">
                 <p className="close-modal" onClick={() => {
-                    setModal(false)
+                    dispatch(showModalPDP(false))
                 }
                 }>X</p>
                 <div className="modal-detail">
