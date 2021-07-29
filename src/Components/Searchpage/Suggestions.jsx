@@ -1,26 +1,43 @@
-import React from 'react'
-import { connectHits } from 'react-instantsearch-dom'
-import { useDispatch } from 'react-redux'
+import React from 'react';
+import { connectHits, Highlight } from 'react-instantsearch-dom';
 
-import { getQuery } from '../../actions/getQuery'
+import { useDispatch } from 'react-redux';
+
+import { getQuery } from '../../actions/getQuery';
+
+// UNIQBY LIB
+import uniqBy from 'lodash.uniqby';
+import {
+    federatedSearchVisible,
+    searchVisible
+} from '../../actions/visibility';
 
 const Suggestions = ({ hits }) => {
-const dispatch = useDispatch()
-  return (
-    <div className="suggestions-container">
-      {hits.slice(0, 9).map((hit) => (
-        <div
-          key={hit.title}
-          className="suggestion"
-          onClick={(e) => dispatch(getQuery(e.target.innerText))}
-        >
-          <p>{hit.title}</p>
+    const dispatch = useDispatch();
+    const unique = uniqBy(hits, 'ProductTypeDesc');
+    return (
+        <div className="suggestions-container">
+            {hits.map(hit => {
+                return (
+                    <div
+                        key={hit.query}
+                        className="suggestion"
+                        onClick={e => {
+                            dispatch(getQuery(hit.query));
+                            dispatch(searchVisible(true));
+                            dispatch(federatedSearchVisible(false));
+                        }}
+                    >
+                         <Highlight hit={hit} attribute="query" />
+                        {/* <Highlight attribute='ProductTypeDesc' hit={hit.label} /> */}
+                        {/* <p>{hit._highlightResult.ProductTypeDesc.value}</p> */}
+                    </div>
+                );
+            })}
         </div>
-      ))}
-    </div>
-  )
-}
+    );
+};
 
-const CustomSuggestions = connectHits(Suggestions)
+const CustomSuggestions = connectHits(Suggestions);
 
-export default CustomSuggestions
+export default CustomSuggestions;

@@ -23,3 +23,9 @@ export const catTwo = (value) => (dispatch) => {
         payload: value
     })
 }
+export const homepage = (value) => (dispatch) => {
+    dispatch({
+        type: 'HOMEPAGE',
+        payload: value
+    })
+}

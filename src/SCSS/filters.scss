@@ -52,6 +52,85 @@
     }
 }
 
+// Current Refinement
+.refinement-content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    height: auto;
+    transform: translateX(0%);
+    transform: translateY(-5rem);
+    z-index: 999;
+    .refinement-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: -4em;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        a {
+            @include btn;
+        }
+        h3 {
+            @include title;
+        }
+        .refinement-results {
+            display: flex;
+            margin-left: 0.5rem;
+
+            li {
+                margin-left: 0.5rem;
+            }
+            .refinement-filter {
+                @include btn;
+                display: flex;
+                align-items: center;
+                span{
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+.refined-filter{
+    // border: 2px solid $second-color !important;
+    font-weight: bold;
+    background: linear-gradient(163deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 26%, rgba(232,11,1,0.2007177871148459) 100%);
+    transition: 0.3s ease-in-out;
+}
+
+.clearRefinement-btn{
+    // border-bottom: 1px solid $second-color;
+    font-family: $main-font;
+    font-size: 0.8rem;
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 1rem;
+    position: absolute;
+    font-style: italic;
+    z-index: 100;
+
+    &::before {
+        content: "";
+        position: absolute;
+        background-color: $second-color;
+        height: 1px;
+        width: 100%;
+        bottom: -0.5rem;
+        transform-origin: 100% 0;
+        transform: scaleX(0);
+        transition: transform 0.4s;
+    }
+
+    &:hover::before {
+        transform-origin: 0 0;
+        transform: scaleX(1);
+    }
+}
+
 .hideWrapperFilter {
     animation: hideWrapper 0.3s forwards ease-in-out;
 }
@@ -129,38 +208,4 @@
     background-color: $seventh-color !important;
 }
 
-// Current Refinement
-.refinement-content {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    margin: 0 auto;
-    height: auto;
-    transform: translateX(0%);
-    transform: translateY(6rem);
-    z-index: 99;
-    .refinement-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1em;
-        justify-content: center;
-        a {
-            @include btn;
-        }
-        h3 {
-            @include title;
-        }
-        .refinement-results {
-            display: flex;
-            margin-left: 0.5rem;
 
-            li {
-                margin-left: 0.5rem;
-            }
-            .refinement-filter {
-                @include btn;
-            }
-        }
-    }
-}
