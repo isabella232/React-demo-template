@@ -29,7 +29,7 @@ window.index_asc = "rayban_merged_price_asc"
 window.index_desc = "rayban_merged_price_dsc"
 
 // QUERY SUGG
-window.indexSugg = "rayban_merged_query_suggestions"
+window.indexSugg = "rayban_merged_query_suggestions2"
 
 ReactDOM.render(
 <Provider store={store}>
