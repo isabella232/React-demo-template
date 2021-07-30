@@ -33,8 +33,9 @@ window.indexSugg = 'rayban_merged_query_suggestions2';
 // DESCRIPTION ABOUT HOW THE FOLLOWING VARIABLES ARE USED
 // Please ensure you set your attributes in the following parts of the dashboard first:
 // Facets, Facet Display, and any visual editor rules to change the facets
+// If you don't see facet display, ask the internal dashboard team to make sure you have the favet ordering feature enabled
 
-// ADD ATTRIBUTES FOR REFINEMENT LISTS TO THE ARRAY, IF NONE LEAVE AS EMPTY STRING
+// ADD ATTRIBUTES FOR REFINEMENT LISTS TO THE ARRAY, IF NONE LEAVE ARRAY EMPTY
 window.refinementListAttributes = ['gender'];
 
 // ADD ATTRIBUTE FOR PRICE, IF NONE LEAVE AS EMPTY STRING

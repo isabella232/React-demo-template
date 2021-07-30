@@ -179,13 +179,13 @@ const CustomFilters = ({ filterAnim }) => {
                 <ExperimentalDynamicWidgets
                  // fallbackComponent={Menu}
                  >
-                <HierarchicalMenu attribute={window.hierarchicalCategoriesAttribute} />
+                 <HierarchicalMenu attribute={window.hierarchicalCategoriesAttribute} />
                 {window.refinementListAttributes.map((e) => 
                   (
                     <GenericRefinementList attribute={e}/>
                   )
                 )}
-                <GenericRangeSlider attribute={window.priceAttribute} min={10} max={550} />
+                {window.priceAttribute !== '' && <GenericRangeSlider attribute={window.priceAttribute} min={10} max={550} />}
                 </ExperimentalDynamicWidgets>
             </div>
         </div>
