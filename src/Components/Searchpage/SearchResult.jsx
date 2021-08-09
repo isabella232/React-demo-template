@@ -11,12 +11,13 @@ import {
     Stats,
     SortBy,
     connectCurrentRefinements,
-    InstantSearch
+    InstantSearch,
+    ExperimentalDynamicWidgets
 } from 'react-instantsearch-dom';
 
 //COMPONENTS
 import { CustomHits } from './Hits';
-import { CustomFilters } from './Filters';
+import { CustomFilters, DynamicFacets } from './Filters';
 import CustomSearchBox from './SearchBox';
 import VirtualSearchBox from './VirtualSearchBox';
 import ProductDetails from '../ProductsDetails/ProductsDetails';

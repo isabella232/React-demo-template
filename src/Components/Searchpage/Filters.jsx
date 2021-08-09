@@ -5,10 +5,10 @@ import {
     connectRefinementList,
     connectHierarchicalMenu,
     connectRange,
+    ExperimentalDynamicWidgets
 } from 'react-instantsearch-dom';
 
 // COMPONENTS IMPORT
-import DynamicFilter from './DynamicFilter';
 import CustomStateResults from './StateResults'
 
 // Prerequisite: install rheostat@4
@@ -16,7 +16,10 @@ import 'rheostat/initialize';
 import Rheostat from 'rheostat';
 import 'rheostat/css/rheostat.css';
 
-const CatFilter = ({
+// expects an attribute which is formated as a hierarchy
+// see https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#hierarchical-facets
+const HeirarchicalCategoriesFilter = ({
+    title,
     items,
     refine,
     createURL }) => {
@@ -29,7 +32,7 @@ const CatFilter = ({
                 }}
                 className="title"
             >
-                <h3>Category</h3>
+                <h3>{title}</h3>
                 <p>-</p>
             </div>
             <ul
@@ -66,16 +69,16 @@ const CatFilter = ({
     );
 };
 
-const HierarchicalMenu = connectHierarchicalMenu(CatFilter);
+const HierarchicalMenu = connectHierarchicalMenu(HeirarchicalCategoriesFilter);
 
-// CATEGORIES REFINMENT LIST
-const CatRefinementList = ({ items, refine }) => {
+// expects an attribute which is an array of items
+const RefinementList = ({title, items, refine }) => {
     return (
         <div className="filters-content">
             <div
                 className="title"
             >
-                <h3>Categories</h3>
+                <h3>{title}</h3>
                 <p>-</p>
             </div>
             <ul
@@ -102,254 +105,11 @@ const CatRefinementList = ({ items, refine }) => {
     );
 };
 
-const CatRefinementLists = connectRefinementList(CatRefinementList);
-
-// Color Filter
-const ColorRefinementList = ({ items, refine }) => {
-    const [colors, setColors] = useState(true);
-    return (
-        <div className="filters-content">
-            <div
-                className="title"
-                onClick={() => {
-                    setColors(!colors);
-                }}
-            >
-                <h3>Colors</h3>
-                <p>-</p>
-            </div>
-            <ul
-                className={`filter-list-content ${colors ? 'active-filters' : 'hidden-filters'
-                    }`}
-            >
-                {items.map(item => (
-                    <li className="filter-list" key={item.label}>
-                        <button
-                            className={`button-filter ${
-                                item.isRefined ? 'refined-filter' : ''
-                            }`}
-                            href="#"
-                            onClick={event => {
-                                event.preventDefault();
-                                refine(item.value);
-                            }}
-                        >
-                            {item.label}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <div className="line"></div>
-        </div>
-    );
-};
-
-const CustomColorRefinementList = connectRefinementList(ColorRefinementList);
-
-// Size Filter
-const SizeRefinementList = ({ items, refine }) => {
-    const [size, setSize] = useState(true);
-    return (
-        <div className="filters-content">
-            <div
-                onClick={() => {
-                    setSize(!size);
-                }}
-                className="title"
-            >
-                <h3>Size</h3>
-                <p>-</p>
-            </div>
-            <ul
-                className={`filter-list-content ${size ? 'active-filters' : 'hidden-filters'
-                    }`}
-            >
-                {items.map(item => (
-                    <li className="filter-list" key={item.label}>
-                        <button
-                            className={`button-filter ${
-                                item.isRefined ? 'refined-filter' : ''
-                            }`}
-                            href="#"
-                            style={{ fontWeight: item.isRefined ? 'bold' : '' }}
-                            onClick={event => {
-                                event.preventDefault();
-                                refine(item.value);
-                            }}
-                        >
-                            {item.label}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <div className="line"></div>
-        </div>
-    );
-};
-
-const CustomSizeRefinementList = connectRefinementList(SizeRefinementList);
+const GenericRefinementList = connectRefinementList(RefinementList);
 
 
-// CATEGORIES
-const CategoriesRefinementList = ({ items, refine }) => {
-    return (
-        <div className="filters-content">
-            <div className="title"></div>
-            <ul className='filter-list-content'>
-                {items.map(item => (
-                    <li className="filter-list" key={item.label}>
-                        <button
-                            className={`button-filter ${
-                                item.isRefined ? 'refined-filter' : ''
-                            }`}
-                            href="#"
-                            style={{ fontWeight: item.isRefined ? 'bold' : '' }}
-                            onClick={event => {
-                                event.preventDefault();
-                                refine(item.value);
-                            }}
-                        >
-                            {item.label}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <div className="line"></div>
-        </div>
-    );
-};
-
-const CustomCateRefinementList = connectRefinementList(CategoriesRefinementList);
-
-
-// Frame Shape Description
-const FrameShapeRefinementList = ({ items, refine }) => {
-    const [frameShapes, setFrameShapes] = useState(true);
-    return (
-        <div className="filters-content">
-            <div
-                className="title"
-                onClick={() => {
-                    setFrameShapes(!frameShapes);
-                }}
-            >
-                <h3>Frame Shapes</h3>
-                <p>-</p>
-            </div>
-            <ul
-                className={`filter-list-content ${frameShapes ? 'active-filters' : 'hidden-filters'
-                    }`}
-            >
-                {items.map(item => (
-                    <li className="filter-list" key={item.label}>
-                        <button
-                            className={`button-filter ${
-                                item.isRefined ? 'refined-filter' : ''
-                            }`}
-                            href="#"
-                            onClick={event => {
-                                event.preventDefault();
-                                refine(item.value);
-                            }}
-                        >
-                            {item.label}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <div className="line"></div>
-        </div>
-    );
-};
-
-const CustomFrameShapeRefinementList = connectRefinementList(FrameShapeRefinementList);
-
-// GENDER
-const GenderRefinementList = ({ items, refine }) => {
-    const [genders, setGenders] = useState(true);
-    return (
-        <div className="filters-content">
-            <div
-                className="title"
-                onClick={() => {
-                    setGenders(!genders);
-                }}
-            >
-                <h3>Gender</h3>
-                <p>-</p>
-            </div>
-            <ul
-                className={`filter-list-content ${genders ? 'active-filters' : 'hidden-filters'
-                    }`}
-            >
-                {items.map(item => (
-                    <li className="filter-list" key={item.label}>
-                        <button
-                            className={`button-filter ${
-                                item.isRefined ? 'refined-filter' : ''
-                            }`}
-                            href="#"
-                            onClick={event => {
-                                event.preventDefault();
-                                refine(item.value);
-                            }}
-                        >
-                            {item.label}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <div className="line"></div>
-        </div>
-    );
-};
-
-const CustomGenderRefinementList = connectRefinementList(GenderRefinementList);
-
-// FRAMEMATERIAL
-const MaterialRefinementList = ({ items, refine }) => {
-    const [materials, setMaterials] = useState(true);
-    return (
-        <div className="filters-content">
-            <div
-                className="title"
-                onClick={() => {
-                    setMaterials(!materials);
-                }}
-            >
-                <h3>Frame Material</h3>
-                <p>-</p>
-            </div>
-            <ul
-                className={`filter-list-content ${materials ? 'active-filters' : 'hidden-filters'
-                    }`}
-            >
-                {items.map(item => (
-                    <li className="filter-list" key={item.label}>
-                        <button
-                            className={`button-filter ${
-                                item.isRefined ? 'refined-filter' : ''
-                            }`}
-                            href="#"
-                            onClick={event => {
-                                event.preventDefault();
-                                refine(item.value);
-                            }}
-                        >
-                            {item.label}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            <div className="line"></div>
-        </div>
-    );
-};
-
-const CustomMaterialRefinementList = connectRefinementList(MaterialRefinementList);
-
-// Price Filter
-const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
+// expects an attribute which is a number (float or int)
+const RangeSlider = ({ title, min, max, currentRefinement, canRefine, refine }) => {
     const [stateMin, setStateMin] = React.useState(min);
     const [stateMax, setStateMax] = React.useState(max);
 
@@ -378,7 +138,7 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
     return (
         <div className="filters-content">
             <div className="title" style={{ marginBottom: '1em' }}>
-                <h3>Price</h3>
+                <h3>{title}</h3>
                 <p>-</p>
             </div>
             <Rheostat
@@ -408,31 +168,29 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
     );
 };
 
-const CustomRangeSlider = connectRange(RangeSlider);
+const GenericRangeSlider = connectRange(RangeSlider);
 
 // MAIN COMPONENT
-const CustomFilters = ({ filterAnim, isDynamicFactesOn, setIsDynamicFactesOn }) => {
+const CustomFilters = ({ filterAnim }) => {
     return (
         <div className={`filters-wrapper ${filterAnim ? "showWrapperFilter" : "hideWrapperFilter"}`}>
             <div>
                 <CustomStateResults />
-                {isDynamicFactesOn ? ('') : (
-                    <div>
-                        <CustomFrameShapeRefinementList attribute="FrameShapeDescription" />
-                        <CustomMaterialRefinementList attribute="FRAMEMATERIAL" />
-                        <CustomGenderRefinementList attribute="GENDER" />
-                        <CustomColorRefinementList attribute="color" />
-                        <CustomSizeRefinementList attribute="size" />
-                    </div>)}
-
-                <DynamicFilter setIsDynamicFactesOn={setIsDynamicFactesOn} isDynamicFactesOn={isDynamicFactesOn} />
-                <CustomFrameShapeRefinementList attribute="FrameShapeDescription" />
-                <CustomMaterialRefinementList attribute="FRAMEMATERIAL" />
-                <CustomRangeSlider attribute="price" min={10} max={550} />
+                <ExperimentalDynamicWidgets
+                 // fallbackComponent={Menu}
+                 >
+                 <HierarchicalMenu attribute={window.hierarchicalCategoriesAttribute} />
+                {window.refinementListAttributes.map((e) => 
+                  (
+                    <GenericRefinementList attribute={e}/>
+                  )
+                )}
+                {window.priceAttribute !== '' && <GenericRangeSlider attribute={window.priceAttribute} min={10} max={550} />}
+                </ExperimentalDynamicWidgets>
             </div>
         </div>
 
     );
 };
 
-export { CustomFilters, HierarchicalMenu, CatRefinementLists, CustomCateRefinementList };
+export { CustomFilters };
