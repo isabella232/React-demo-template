@@ -29,8 +29,6 @@ const Suggestions = ({ hits }) => {
                         }}
                     >
                          <Highlight hit={hit} attribute="query" />
-                        {/* <Highlight attribute='ProductTypeDesc' hit={hit.label} /> */}
-                        {/* <p>{hit._highlightResult.ProductTypeDesc.value}</p> */}
                     </div>
                 );
             })}

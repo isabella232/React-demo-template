@@ -31,7 +31,7 @@ const SearchBox = ({ refine }) => {
                         dispatch(searchVisible(true));
                         dispatch(getQuery(query));
                     }}
-                    autocomplete="off"
+                    autoComplete="off"
                 >
                     <input
                         id="input-search2"
@@ -39,16 +39,11 @@ const SearchBox = ({ refine }) => {
                         type="search"
                         value={query}
                         onChange={event => {
-                            console.log(event.currentTarget.value);
                             dispatch(getQuery(event.currentTarget.value));
                             refine(event.currentTarget.value);
                         }}
-                        // onInput={event => {
-                        //     dispatch(getQuery(event.currentTarget.value))
-                        //     query ? refine(query) : refine(event.currentTarget.value)
-                        // }}
                         placeholder="Search..."
-                        autoFocus="true"
+                        autoFocus={true}
                     />
                     <svg
                         viewBox="0 0 897 897"

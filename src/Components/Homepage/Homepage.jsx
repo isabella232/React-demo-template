@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-// IMPORT AASSET
+// IMPORT ASSET
 import headerBand from '../../Assets/Images/headerBand.png';
 import img1 from '../../Assets/Images/img1.png';
 import img2 from '../../Assets/Images/img2.png';

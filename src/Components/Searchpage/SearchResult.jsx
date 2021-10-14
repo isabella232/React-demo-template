@@ -112,18 +112,6 @@ const SearchResults = () => {
                                 enablePersonalization={true}
                                 hitsPerPage={21}
                             />) : ('')}
-                    {/* {catMens ? (  <Configure
-                                userToken={persona}
-                                filters="DepartmentDesc:'Mens'"
-                                enablePersonalization={true}
-                                hitsPerPage={21}
-                            />) : ('')}
-                    {catKids ? (  <Configure
-                                userToken={persona}
-                                filters="DepartmentDesc:'Childrens'"
-                                enablePersonalization={true}
-                                hitsPerPage={21}
-                            />) : ('')} */}
 
                     {searchVisible ? ( <Configure
                                 userToken={persona}
@@ -182,11 +170,11 @@ const SortAndStat = () => {
             {
                 value: window.index_asc,
                 label: 'Price Asc.'
-            },
-            {
-                value: window.index_pop,
-                label: 'Popularity'
             }
+            // {
+            //     value: window.index_pop,
+            //     label: 'Popularity'
+            // }
         ]}
     />
 </div>

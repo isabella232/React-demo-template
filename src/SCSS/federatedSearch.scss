@@ -2,8 +2,9 @@
 @import "./mixin.scss";
 
 .federatedSearch-wrapper {
-    display: grid;
-    grid-template-columns: 25% 75%;
+    display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
 }
 
 .federatedSearch {
@@ -27,6 +28,7 @@
 }
 
 .federatedSearch-products {
+    width: 70%;
     .federated-title {
         margin-left: 3rem;
         margin-bottom: 1rem;
@@ -34,21 +36,27 @@
 }
 
 .federatedSearch-suggestions {
-    .suggestions-container {
-        display: flex;
-        flex-direction: column;
-
-        .suggestion {
-            border: none;
-            padding: 0;
-            margin: 1rem 0;
-
-            p {
-                text-transform: lowercase;
-                font-size: 1.2rem;
-            }
-        }
+    h3{
+        margin-bottom:1rem;
     }
+  .suggestions-container {
+    display: flex;
+    flex-direction: column;
+    
+
+    .suggestion {
+      border: none;
+      padding: 0;
+      transition: 0.2s ease-in-out;
+      text-transform: capitalize;
+      &:hover{
+        span{
+        color: $second-color;
+        transition: 0.2s ease-in-out;
+    }
+    }
+    }
+  }
 }
 
 .container-federated {
@@ -58,4 +66,49 @@
     left: 0;
     width: 100%;
     transform: translate(0%, 15%);
+}
+
+
+// RECENT SEARCHES
+.federatedSearch-recentSearches_items {
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    
+      p{
+        margin: 0.5rem 0;
+          &:hover{
+      color: $second-color;
+      transition: 0.2s ease-in-out;
+  }
+  }
+  }
+
+  // INJECTED CONTENT
+  .injectedContent__wrapper{
+    margin-top: 3rem;
+}
+
+.injected-content {
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: -3rem 0rem;
+  }
+  h3 {
+    color: $second-color;
+  }
+  a {
+    @include btn;
+    text-decoration: none;
+    font-family: $main-font;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+  }
 }

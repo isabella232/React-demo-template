@@ -131,12 +131,19 @@
     }
 }
 
+.is-closed{
+    // width: 0 !important;
+    // overflow: hidden;
+    // opacity: 0;
+    // transition: width 350ms ease-in-out 0ms, opacity 0s ease-in-out;
+}
+
 .hideWrapperFilter {
-    animation: hideWrapper 0.3s forwards ease-in-out;
+    animation: hideWrapper 0.5s 0s forwards  ease-in-out;
 }
 
 .showWrapperFilter {
-    animation: showWrapper 0.3s forwards ease-in-out;
+    animation: showWrapper 0.5s 0s forwards  ease-in-out;
 }
 
 .active-filters {
@@ -147,31 +154,47 @@
     animation: fadeFiltersOut 0.5s forwards ease-in-out;
 }
 
+
+
 @keyframes hideWrapper {
     0% {
+        // opacity: 1;
+        // transform: translate3d(0, 0, 0);
+        width: 20%;
+        overflow: visible;
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+        flex-grow: 1;
+        transform: translate3d(0%, 0, 0);
+    }
+    80%{
+        opacity: 0;
+        // transform: translate3d(-100%, 0, 0);
+        
     }
     100% {
         opacity: 0;
-        transform: translate3d(-100, 0, 0);
-        width: 0;
+        // transform: translate3d(-100%, 0, 0);
+        width: 0 ;
         overflow: hidden;
-        flex-shrink: 0;
+        flex-grow: 0;
+       
     }
 }
 @keyframes showWrapper {
     0% {
-        opacity: 0;
-        transform: translate3d(-100, 0, 0);
-        width: 0;
+        width: 0 ;
         overflow: hidden;
-        flex-shrink: 0;
+        opacity: 0;
+        flex-grow: 0;
+        // transform: translate3d(-150%, 0, 0);
     }
     100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
+        // transform: translate3d(0%, 0, 0);
         width: 20%;
+        overflow: visible;
+        opacity: 1;
+        flex-grow: 1;
+        
     }
 }
 
@@ -209,3 +232,60 @@
 }
 
 
+// FILTER SEARCH WITHIN
+// .filter-list-content {
+//     width: 100%;
+//     .filter-list {
+//       width: 100%;
+//       p {
+//         font-size: 16px;
+//       }
+//       .button-filter {
+//         text-decoration: none;
+//         border: 1px solid white;
+//         text-transform: capitalize;
+//         color: $sixth-color;
+//         width: 100%;
+//         display: flex;
+//         margin: 0.5rem 0;
+//         padding: 0.5rem 0.8rem;
+//         font-size: 0.8rem;
+//         font-weight: 300;
+//         transition: all 0.2s ease-in-out;
+//         cursor: pointer;
+//         border-radius: 30px;
+//         background-color: white;
+//         font-family: $main-font;
+//         &:hover{
+//           border: 1px solid $third-color;
+//         }
+//       }
+      
+//     }
+//   }
+
+  .search-facet-svg {
+    width: 30px;
+    right: 1rem;
+    top: 0;
+    position: relative;
+  }
+  
+  .search-facet {
+  @include btn;
+    &:focus{
+      outline: none
+    }
+    &:hover{
+      border: 1px solid $third-color;
+    }
+    &::placeholder{
+      font-size: 0.8rem;
+      position: relative;
+    }
+  }
+  
+  
+  .search-facet__hidden{
+    display: none;
+  }

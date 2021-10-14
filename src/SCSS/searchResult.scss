@@ -17,9 +17,12 @@
 
 .hits-panel-wrapper{
     position: relative;
-    flex-grow: 1;
-    width: 80%;
-    will-change: width;
+    flex-grow: 2;
+    // width: 80%;
+    will-change: transform;
+    transform-origin: 100% 0;
+    width: 100%;
+    transition: transform .35s ease-in-out
 }
 
 
@@ -82,10 +85,15 @@
     width: 100%;
     margin: 3rem auto;
     position: relative;
+  
 
     .filters-wrapper {
         width: 20%;
         will-change: width;
+        flex-shrink: 0;
+        overflow: visible;
+        display: inline-block;
+        // transition: width 350ms ease-in-out 0ms, opacity 0s ease-in-out;
     }
 
     .hits-wrapper {
@@ -100,7 +108,7 @@
     justify-content: center;
 
     .suggestion {
-        margin: 0.5rem;
+        margin: 0.5rem 0;
         border: solid 1px $third-color;
         color: black;
         border-radius: 3px;

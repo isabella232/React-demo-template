@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 // COMPONENT IMPORT
 import logo from '../../Assets/Images/logo.jpeg';
 import CustomSearchBox from '../Searchpage/SearchBox';
-
-// import headerUp from '../../Assets/Images/headerUp.png';
 import SelectPersona from './Persona';
 import {
     searchVisible,
@@ -16,8 +14,6 @@ import {
 import { getQuery } from '../../actions/getQuery';
 
 
-import { motion } from 'framer-motion';
-
 const Header = () => {
     const federatedSearchVisibleSelector = useSelector(
         state => state.visibility.federatedSearchVisible
@@ -25,8 +21,6 @@ const Header = () => {
 
     const dispatch = useDispatch();
     const homepageSelector = useSelector(state => state.visibility.homepage)
-    // const catKidsSelector  = useSelector(state => state.visibility.catKids)
-    // const catMensSelector  = useSelector(state => state.visibility.catMens)
     const catTwoSelector = useSelector(state => state.visibility.catTwo)
     const catOneSelector = useSelector(state => state.visibility.catOne)
     const searchVisibleSelector = useSelector(state => state.visibility.searchVisible)
@@ -52,8 +46,6 @@ const Header = () => {
                             dispatch(catOne(false));
                             dispatch(searchVisible(false));
                             dispatch(catTwo(false));
-                            // dispatch(catMens(false))
-                            // dispatch(catKids(false))
                             dispatch(federatedSearchVisible(false))
                         }}
                     />
@@ -63,8 +55,6 @@ const Header = () => {
                                 dispatch(catOne(true));
                                 dispatch(searchVisible(false));
                                 dispatch(catTwo(false));
-                                // dispatch(catMens(false))
-                                // dispatch(catKids(false))
                                 dispatch(federatedSearchVisible(false));
                                 dispatch(getQuery(''));
                             }}
@@ -76,8 +66,6 @@ const Header = () => {
                                 dispatch(catOne(false));
                                 dispatch(searchVisible(false));
                                 dispatch(catTwo(true));
-                                // dispatch(catMens(false))
-                                // dispatch(catKids(false))
                                 dispatch(federatedSearchVisible(false));
                                 dispatch(getQuery(''));
                             }}
@@ -89,8 +77,6 @@ const Header = () => {
                                 dispatch(catOne(false));
                                 dispatch(searchVisible(false));
                                 dispatch(catTwo(false));
-                                // dispatch(catMens(true))
-                                // dispatch(catKids(false))
                                 dispatch(federatedSearchVisible(false));
                                 dispatch(getQuery(''));
                             }}>
@@ -101,8 +87,6 @@ const Header = () => {
                             dispatch(catOne(false));
                             dispatch(searchVisible(false));
                             dispatch(catTwo(false));
-                            // dispatch(catMens(false))
-                            // dispatch(catKids(true))
                             dispatch(federatedSearchVisible(false));
                             dispatch(getQuery(''));
                         }}
@@ -118,10 +102,7 @@ const Header = () => {
                 <div
                     className="search-wrapper"
                     onClick={(e) => {
-                        console.log(e)
                         if (
-                            // catMensSelector ||
-                            // catKidsSelector ||
                             homepageSelector ||
                             catOneSelector ||
                             catTwoSelector
